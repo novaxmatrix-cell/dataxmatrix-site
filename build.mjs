@@ -105,6 +105,7 @@ const applyTokens = (s) => s.replace(/\{\{([A-Z_]+)\}\}/g, (m, k) => {
 fs.rmSync(DIST, { recursive: true, force: true });
 fs.mkdirSync(DIST, { recursive: true });
 fs.cpSync(path.join(SRC, 'assets'), path.join(DIST, 'assets'), { recursive: true });
+fs.copyFileSync(path.join(SRC, 'favicon.ico'), path.join(DIST, 'favicon.ico'));
 
 const assetVersion = crypto.createHash('sha1')
   .update(fs.readFileSync(path.join(SRC, 'assets/css/site.css')))
