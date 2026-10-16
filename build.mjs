@@ -30,8 +30,9 @@ const NAV = [
 // ---------- helpers ----------
 const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 const wa = (text) => `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(text)}`;
-const fmtDate = (iso) => { const [y, m, d] = iso.split('-'); return `${d}/${m}/${y}`; };
-const fmtSize = (bytes) => `${Math.round(bytes / 1048576)} ميغابايت`;
+const ltr = (s) => `<bdi dir="ltr">${esc(s)}</bdi>`;
+const fmtDate = (iso) => { const [y, m, d] = iso.split('-'); return ltr(`${d}/${m}/${y}`); };
+const fmtSize = (bytes) => `${ltr(Math.round(bytes / 1048576))} ميغابايت`;
 
 function walk(dir) {
   return fs.readdirSync(dir, { withFileTypes: true }).flatMap((e) => {
@@ -54,7 +55,7 @@ for (const r of rel.releases) {
 }
 const latest = rel.releases[0] || null;
 
-const reqList = rel.requirements.map((x) => `<li>${esc(x)}</li>`).join('');
+const reqList = rel.requirements.map((x) => `<li>${esc(x).replace(/\d+(?:-bit| GB)\b/g, (m) => `<bdi dir="ltr">${m}</bdi>`)}</li>`).join('');
 
 function downloadBox() {
   if (!latest) {
@@ -68,8 +69,8 @@ function downloadBox() {
   }
   return `<div class="dlbox">
   <h2>Iris لـ Windows</h2>
-  <div class="v">الإصدار ${esc(latest.version)} · ${fmtDate(latest.date)} · ${fmtSize(latest.size)}</div>
-  <a class="btn ba" href="${esc(latest.url)}">⬇ تنزيل ${esc(latest.file)}</a>
+  <div class="v">الإصدار ${ltr(latest.version)} · ${fmtDate(latest.date)} · ${fmtSize(latest.size)}</div>
+  <a class="btn ba" href="${esc(latest.url)}">⬇ تنزيل ${ltr(latest.file)}</a>
   <ul>${reqList}</ul>
   <div class="hash">SHA-256: ${esc(latest.sha256)}</div>
  </div>`;
@@ -78,7 +79,7 @@ function downloadBox() {
 function changelog(limit) {
   const list = limit ? rel.releases.slice(0, limit) : rel.releases;
   if (!list.length) return `<div class="item">لا توجد إصدارات منشورة بعد.</div>`;
-  return list.map((r) => `<div class="item" id="v${esc(r.version)}"><b>${esc(r.version)}</b> <small>${fmtDate(r.date)}</small>
+  return list.map((r) => `<div class="item" id="v${esc(r.version)}"><b>${ltr(r.version)}</b> <small>${fmtDate(r.date)}</small>
    <ul>${r.notes.map((n) => `<li>${esc(n)}</li>`).join('')}</ul></div>`).join('\n');
 }
 
@@ -95,7 +96,7 @@ const tokens = {
   CHANGELOG: () => changelog(),
   CHANGELOG_SHORT: () => changelog(3),
   REQUIREMENTS: () => reqList,
-  LATEST_VERSION: () => (latest ? esc(latest.version) : 'قريباً'),
+  LATEST_VERSION: () => (latest ? ltr(latest.version) : 'قريباً'),
 };
 const applyTokens = (s) => s.replace(/\{\{([A-Z_]+)\}\}/g, (m, k) => {
   if (!tokens[k]) fail(`unknown token ${m}`);
@@ -149,7 +150,7 @@ for (const file of walk(pagesDir).filter((f) => f.endsWith('.html'))) {
 <meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex">
 <title>تنزيل Iris</title><meta http-equiv="refresh" content="0; url=${esc(target)}">
 <style>body{font-family:"Segoe UI",Tahoma,sans-serif;background:#F7F6F2;color:#1F2A28;padding:40px 16px;text-align:center}a{color:#0F766E}</style>
-</head><body><p>${latest ? `جارٍ تنزيل Iris ${esc(latest.version)}…` : 'لا توجد نسخة منشورة بعد.'} <a href="${esc(target)}">اضغط هنا إن لم يبدأ التحويل</a>.</p></body></html>\n`;
+</head><body><p>${latest ? `جارٍ تنزيل Iris ${ltr(latest.version)}…` : 'لا توجد نسخة منشورة بعد.'} <a href="${esc(target)}">اضغط هنا إن لم يبدأ التحويل</a>.</p></body></html>\n`;
   fs.mkdirSync(path.join(DIST, 'download/latest'), { recursive: true });
   fs.writeFileSync(path.join(DIST, 'download/latest/index.html'), html);
 }
