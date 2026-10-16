@@ -18,6 +18,7 @@ Official website for **Iris** (school management desktop app for Palestinian sch
 - `src/assets/` — CSS, JS, images (copied as-is). Colors are CSS tokens in `site.css`; dark theme redefines them.
 - `data/releases.json` — single source of truth for releases (newest first). Drives `/download/`, `/download/latest/` (stable redirect to newest installer) and `/updates/latest.json` (reserved for future in-app auto-update).
 - `design/iris-site-mockup.html` — the approved design draft (reference only, not published).
+- `design/iris-logo-986.png` — full-size logo, the source for all icons. `python3 tools/make-icons.py` regenerates `logo.png`, favicons and the 180px phone icon; `design/og-image.html` is the source of the 1200×630 link-preview card `og.png` (render command in its header comment).
 - `.github/workflows/deploy.yml` — builds and deploys to Pages on push to `main`.
 
 ## Releasing a new installer
