@@ -159,6 +159,24 @@ figure.ph{border:2px dashed var(--b);border-radius:12px;background:var(--s);colo
 .callout{background:var(--pl);border-radius:12px;padding:14px 18px;margin:16px 0;font-size:15px}
 .soon{background:var(--s);border:1px solid var(--b);border-radius:14px;padding:26px;text-align:center}
 
+/* Guide (video chapters) */
+nav.toc{display:block;background:var(--s);border:1px solid var(--b);border-radius:12px;padding:14px 18px;margin:8px 0 4px;font-size:15px}
+.toc ol{margin-right:22px;columns:2;column-gap:32px}
+.toc li{padding:3px 0;break-inside:avoid}
+.toc a{color:var(--p);text-decoration:none}
+.toc a:hover{text-decoration:underline}
+.chap{padding:28px 0;border-bottom:1px solid var(--b);scroll-margin-top:72px}
+.chap:last-of-type{border-bottom:0}
+.chap h2{display:flex;align-items:center;gap:10px;font-size:24px}
+.chap .num{flex:none;background:var(--a);color:var(--on-a);width:32px;height:32px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:16px;font-weight:800}
+.chap .sub{margin-bottom:16px}
+.chap-body{display:grid;grid-template-columns:1.4fr 1fr;gap:24px;align-items:start}
+.vid video{display:block;width:100%;height:auto;aspect-ratio:16/9;background:var(--b);border:1px solid var(--b);border-radius:12px}
+.howto{margin-right:22px;font-size:15.5px}
+.howto li{margin-bottom:8px;padding-right:4px}
+.howto li::marker{color:var(--p);font-weight:700}
+.guide .page + .sub{margin-bottom:18px}
+
 /* Footer */
 footer{background:var(--foot-bg);color:var(--foot-t);padding:28px 0;font-size:13.5px;margin-top:0}
 footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
@@ -180,5 +198,8 @@ footer nav a{color:var(--foot-t)}
  .grid,.contact{grid-template-columns:1fr}
  .steps{grid-template-columns:1fr 1fr;row-gap:24px}
  .price,.files{grid-template-columns:1fr}
+ .chap-body{grid-template-columns:1fr;gap:16px}
+ .toc ol{columns:1}
+ .chap h2{font-size:20px}
 }
 @media (max-width:420px){.steps{grid-template-columns:1fr}}
