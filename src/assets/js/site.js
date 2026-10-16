@@ -42,4 +42,40 @@
   } else {
     Array.prototype.forEach.call(vids, poster);
   }
+
+  // Scroll reveal (CSS only animates .rv when prefers-reduced-motion allows it).
+  var rv = document.querySelectorAll('.rv');
+  if (rv.length && 'IntersectionObserver' in window) {
+    var ro = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); ro.unobserve(e.target); } });
+    }, { rootMargin: '0px 0px -8% 0px' });
+    Array.prototype.forEach.call(rv, function (el) { ro.observe(el); });
+  } else {
+    Array.prototype.forEach.call(rv, function (el) { el.classList.add('in'); });
+  }
+
+  // Promo video in a dialog. The link falls back to the plain mp4 without JS or <dialog>.
+  var dlg = document.getElementById('promo');
+  var promo = document.querySelector('[data-promo]');
+  if (dlg && promo && dlg.showModal) {
+    var pv = dlg.querySelector('video');
+    promo.addEventListener('click', function (e) {
+      e.preventDefault();
+      if (pv.getAttribute('data-src')) { pv.src = pv.getAttribute('data-src'); pv.removeAttribute('data-src'); }
+      dlg.showModal();
+      var p = pv.play(); if (p && p.catch) p.catch(function () {});
+    });
+    dlg.querySelector('.x').addEventListener('click', function () { dlg.close(); });
+    dlg.addEventListener('click', function (e) { if (e.target === dlg) dlg.close(); });
+    dlg.addEventListener('close', function () { pv.pause(); promo.focus(); });
+  }
+
+  // Copy buttons: data-copy="<id of the element whose text to copy>".
+  Array.prototype.forEach.call(document.querySelectorAll('[data-copy]'), function (b) {
+    b.addEventListener('click', function () {
+      var t = document.getElementById(b.getAttribute('data-copy')).textContent.trim();
+      var done = function () { b.textContent = 'تم النسخ ✓'; setTimeout(function () { b.textContent = 'نسخ'; }, 2000); };
+      if (navigator.clipboard) navigator.clipboard.writeText(t).then(done, function () {});
+    });
+  });
 })();

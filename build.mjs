@@ -71,8 +71,13 @@ function downloadBox() {
   <h2>Iris لـ Windows</h2>
   <div class="v">الإصدار ${ltr(latest.version)} · ${fmtDate(latest.date)} · ${fmtSize(latest.size)}</div>
   <a class="btn ba" href="${esc(latest.url)}">⬇ تنزيل ${ltr(latest.file)}</a>
+  <details class="verify">
+   <summary>التحقق من سلامة الملف</summary>
+   <p>قارن هذه البصمة ببصمة الملف بعد تنزيله، فإن تطابقت فالملف سليم كما نشرناه.</p>
+   <div class="hashrow"><code class="hash" id="sha256">${esc(latest.sha256)}</code><button class="copy" type="button" data-copy="sha256" aria-label="نسخ بصمة SHA-256">نسخ</button></div>
+   <small><bdi dir="ltr">SHA-256</bdi> · في PowerShell: <bdi dir="ltr">Get-FileHash ${esc(latest.file)}</bdi></small>
+  </details>
   <ul>${reqList}</ul>
-  <div class="hash">SHA-256: ${esc(latest.sha256)}</div>
  </div>`;
 }
 
@@ -107,6 +112,7 @@ const tokens = {
   WA_URL: () => esc(wa('مرحباً، أتواصل بخصوص برنامج Iris لمدرستنا.')),
   WA_TRIAL_URL: () => esc(wa('مرحباً، نرغب بتجربة برنامج Iris في مدرستنا.\nاسم المدرسة: \nالمدينة: ')),
   WA_PRIVATE_TRIAL_URL: () => esc(wa('مرحباً، نحن مدرسة خاصة ونرغب بتجربة برنامج Iris مجاناً.\nاسم المدرسة: \nالمدينة: \nعدد الطلاب تقريباً: ')),
+  WA_QUOTE_URL: () => esc(wa('مرحباً، نرغب بعرض سعر لبرنامج Iris.\nاسم المدرسة: \nالمدينة: \nعدد الطلاب تقريباً: ')),
   WA_ACTIVATE_URL: () => esc(wa('مرحباً، أرغب بتفعيل برنامج Iris.\nاسم المدرسة: \nرمز الطلب: ')),
   WA_REPORT_URL: () => esc(wa('مرحباً، أود الإبلاغ عن مشكلة في برنامج Iris.\nاسم المدرسة: \nإصدار البرنامج: \nوصف المشكلة: \n(سأرفق صورة للشاشة)')),
   WA_DISPLAY: () => '<span class="ltr">056-880-6666</span>',
