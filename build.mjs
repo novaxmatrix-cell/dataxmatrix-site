@@ -83,6 +83,25 @@ function changelog(limit) {
    <ul>${r.notes.map((n) => `<li>${esc(n)}</li>`).join('')}</ul></div>`).join('\n');
 }
 
+// ---------- guide (data/guide.json → /guide/ and its chapter pages) ----------
+const guide = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/guide.json'), 'utf8'));
+for (const c of guide) {
+  for (const k of ['id', 'title', 'intro', 'video', 'steps']) if (c[k] == null) fail(`guide chapter ${c.id ?? '?'} is missing "${k}"`);
+  for (const ext of ['mp4', 'webp']) {
+    if (!fs.existsSync(path.join(SRC, `assets/guide/${c.video}.${ext}`))) fail(`guide chapter ${c.id}: assets/guide/${c.video}.${ext} not found`);
+  }
+}
+const guideBody = (c) => `<div class="chap-body">
+  <div class="vid"><video controls preload="none" playsinline width="1920" height="1080" data-poster="/assets/guide/${esc(c.video)}.webp" aria-label="فيديو: ${esc(c.title)}"><source src="/assets/guide/${esc(c.video)}.mp4" type="video/mp4"></video></div>
+  <ol class="howto">${c.steps.map((s) => `<li>${esc(s)}</li>`).join('')}</ol>
+ </div>`;
+const guideToc = () => `<nav class="toc" aria-label="محتويات الدليل"><ol>${guide.map((c) => `<li><a href="#${esc(c.id)}">${esc(c.title)}</a></li>`).join('')}</ol></nav>`;
+const guideChapters = () => guide.map((c, i) => `<div class="chap" id="${esc(c.id)}">
+ <h2><span class="num">${i + 1}</span>${esc(c.title)}</h2>
+ <p class="sub">${esc(c.intro)}</p>
+ ${guideBody(c)}
+</div>`).join('\n');
+
 // ---------- tokens available in pages ----------
 const tokens = {
   WA_URL: () => esc(wa('مرحباً، أتواصل بخصوص برنامج Iris لمدرستنا.')),
@@ -97,7 +116,11 @@ const tokens = {
   CHANGELOG_SHORT: () => changelog(3),
   REQUIREMENTS: () => reqList,
   LATEST_VERSION: () => (latest ? ltr(latest.version) : 'قريباً'),
+  GUIDE_TOC: guideToc,
+  GUIDE_CHAPTERS: guideChapters,
 };
+// {{GUIDE_<ID>}} renders one chapter's video and steps (used by /guide/<slug>/ pages).
+for (const c of guide) tokens[`GUIDE_${c.id.toUpperCase()}`] = () => guideBody(c);
 const applyTokens = (s) => s.replace(/\{\{([A-Z_]+)\}\}/g, (m, k) => {
   if (!tokens[k]) fail(`unknown token ${m}`);
   return tokens[k]();

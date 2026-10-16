@@ -31,4 +31,15 @@
       }
     });
   }
+  // Guide videos use preload="none"; posters load only when a video comes near the viewport.
+  var vids = document.querySelectorAll('video[data-poster]');
+  function poster(v) { v.poster = v.getAttribute('data-poster'); v.removeAttribute('data-poster'); }
+  if (vids.length && 'IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) { if (e.isIntersecting) { poster(e.target); io.unobserve(e.target); } });
+    }, { rootMargin: '300px' });
+    Array.prototype.forEach.call(vids, function (v) { io.observe(v); });
+  } else {
+    Array.prototype.forEach.call(vids, poster);
+  }
 })();
