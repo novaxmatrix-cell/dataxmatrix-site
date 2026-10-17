@@ -4,6 +4,10 @@
     "Windows 10 أو 11 (64-bit)",
     "4 GB ذاكرة على الأقل"
   ],
+  "requirements_en": [
+    "Windows 10 or 11 (64-bit)",
+    "At least 4 GB of RAM"
+  ],
   "releases": [
     {
       "version": "1.0.0-rc.3",
@@ -23,6 +27,19 @@
         "جديد: تنبيه عند توفر تحديث جديد",
         "جديد: قالب Excel فارغ لاستيراد الطلاب",
         "المثبّت غير موقّع بعد: عند ظهور SmartScreen اختر «مزيد من المعلومات» ثم «التشغيل على أي حال». تحقق من SHA256SUMS."
+      ],
+      "notes_en": [
+        "Field-testing version. rc.2 remains available as a fallback.",
+        "New: installments and family plans (a custom plan per student or family, with the reason)",
+        "New: student account statement for parents",
+        "New: overdue payments list (including withdrawn students with outstanding balances)",
+        "New: daily cash book",
+        "New: flat-rate transport subscription",
+        "New: receipts are voided instead of deleted (with the reason, and the number stays reserved)",
+        "New: extra backup to OneDrive (optional)",
+        "New: alert when an update is available",
+        "New: blank Excel template for importing students",
+        "The installer is not signed yet: if SmartScreen appears, choose “More info”, then “Run anyway”. Verify against SHA256SUMS."
       ]
     },
     {
@@ -34,6 +51,10 @@
       "notes": [
         "نسخة تجريبية للتثبيت الميداني.",
         "المثبّت غير موقّع بعد: عند ظهور SmartScreen اختر «مزيد من المعلومات» ثم «التشغيل على أي حال»."
+      ],
+      "notes_en": [
+        "Field-testing version.",
+        "The installer is not signed yet: if SmartScreen appears, choose “More info”, then “Run anyway”."
       ]
     }
   ]

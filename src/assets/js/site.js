@@ -1,4 +1,4 @@
-// Theme toggle + mobile menu. The initial theme is set inline in <head> to avoid a flash.
+// Theme toggle, mobile menu, language switch. The initial theme is set inline in <head> to avoid a flash.
 (function () {
   var root = document.documentElement;
   var btn = document.getElementById('theme-btn');
@@ -70,11 +70,17 @@
     dlg.addEventListener('close', function () { pv.pause(); promo.focus(); });
   }
 
+  // Language switch: remember the choice so English pages stop sending this visitor to Arabic (and vice versa).
+  Array.prototype.forEach.call(document.querySelectorAll('a[data-lang]'), function (a) {
+    a.addEventListener('click', function () { try { localStorage.setItem('lang', a.getAttribute('data-lang')); } catch (e) {} });
+  });
+
   // Copy buttons: data-copy="<id of the element whose text to copy>".
   Array.prototype.forEach.call(document.querySelectorAll('[data-copy]'), function (b) {
     b.addEventListener('click', function () {
       var t = document.getElementById(b.getAttribute('data-copy')).textContent.trim();
-      var done = function () { b.textContent = 'تم النسخ ✓'; setTimeout(function () { b.textContent = 'نسخ'; }, 2000); };
+      var label = b.textContent;
+      var done = function () { b.textContent = b.getAttribute('data-done'); setTimeout(function () { b.textContent = label; }, 2000); };
       if (navigator.clipboard) navigator.clipboard.writeText(t).then(done, function () {});
     });
   });

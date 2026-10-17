@@ -1,35 +1,35 @@
 <!doctype html>
-<html lang="ar" dir="rtl">
+<html lang="{{lang}}" dir="{{dir}}">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>{{title}}</title>
 <meta name="description" content="{{description}}">
 <link rel="canonical" href="{{canonical}}">
+{{alternates}}
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Iris">
 <meta property="og:title" content="{{title}}">
 <meta property="og:description" content="{{description}}">
 <meta property="og:url" content="{{canonical}}">
-<meta property="og:image" content="{{siteUrl}}/assets/img/og.png">
-<meta property="og:image:secure_url" content="{{siteUrl}}/assets/img/og.png">
+<meta property="og:image" content="{{siteUrl}}/assets/img/{{ogImage}}">
+<meta property="og:image:secure_url" content="{{siteUrl}}/assets/img/{{ogImage}}">
 <meta property="og:image:type" content="image/png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="شعار Iris – إدارة المدرسة كلها في برنامج واحد">
-<meta property="og:locale" content="ar_AR">
+<meta property="og:image:alt" content="{{ogAlt}}">
+<meta property="og:locale" content="{{ogLocale}}">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="{{title}}">
 <meta name="twitter:description" content="{{description}}">
-<meta name="twitter:image" content="{{siteUrl}}/assets/img/og.png">
+<meta name="twitter:image" content="{{siteUrl}}/assets/img/{{ogImage}}">
 <meta name="theme-color" content="#0A1428">
 <link rel="icon" href="/favicon.ico" sizes="16x16 32x32 48x48">
 <link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicon-32.png">
 <link rel="icon" type="image/png" sizes="96x96" href="/assets/img/logo.png">
 <link rel="apple-touch-icon" sizes="180x180" href="/assets/img/apple-touch-icon.png">
-<script>document.documentElement.className='js';try{var t=localStorage.getItem('theme');if(t==='dark'||t==='light')document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
-<link rel="preload" href="/assets/fonts/IBMPlexSansArabic-Regular.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" href="/assets/fonts/IBMPlexSansArabic-Bold.woff2" as="font" type="font/woff2" crossorigin>
+{{langRedirect}}<script>document.documentElement.className='js';try{var t=localStorage.getItem('theme');if(t==='dark'||t==='light')document.documentElement.setAttribute('data-theme',t)}catch(e){}</script>
+{{fontPreload}}
 <link rel="stylesheet" href="/assets/css/site.css?v={{assetVersion}}">
 </head>
 <body>
@@ -54,16 +54,17 @@
  <symbol id="i-import" viewBox="0 0 24 24"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/><path d="M14 3v6h6M12 18v-6m-3 3 3 3 3-3"/></symbol>
  <symbol id="i-zap" viewBox="0 0 24 24"><path d="M13 2 3 14h9l-1 8 10-12h-9z"/></symbol>
 </svg>
-<a class="skip" href="#main">تخطَّ إلى المحتوى</a>
+<a class="skip" href="#main">{{skip}}</a>
 <header><div class="wrap">
  <a class="brand" href="/"><img src="/assets/img/logo-80.webp" width="40" height="40" alt="">Iris</a>
- <nav id="site-nav" aria-label="القائمة الرئيسية">
+ <nav id="site-nav" aria-label="{{navAria}}">
 {{nav}}
  </nav>
  <div class="hdr-end">
-  <a class="btn bp" href="/download/">تنزيل Iris</a>
-  <button class="icon-btn" id="theme-btn" type="button" aria-label="تبديل الوضع الليلي">☾</button>
-  <button class="icon-btn menu" id="menu-btn" type="button" aria-label="القائمة" aria-controls="site-nav" aria-expanded="false">☰</button>
+  <a class="btn bp" href="/download/">{{downloadBtn}}</a>
+  <a class="lang-switch" href="{{switchUrl}}" hreflang="{{switchLang}}" lang="{{switchLang}}" data-lang="{{switchLang}}">{{switchLabel}}</a>
+  <button class="icon-btn" id="theme-btn" type="button" aria-label="{{themeAria}}">☾</button>
+  <button class="icon-btn menu" id="menu-btn" type="button" aria-label="{{menuAria}}" aria-controls="site-nav" aria-expanded="false">☰</button>
  </div>
 </div></header>
 
@@ -75,27 +76,27 @@
  <div class="fcols">
   <div>
    <a class="brand" href="/"><img src="/assets/img/logo-80.webp" width="36" height="36" alt="" loading="lazy">Iris</a>
-   <p>نظام إدارة مدرسية للمدارس الفلسطينية الحكومية والخاصة. يعمل بدون إنترنت، وبيانات المدرسة تبقى في المدرسة.</p>
+   <p>{{footerAbout}}</p>
   </div>
-  <nav aria-label="روابط التذييل">
-   <h2>روابط</h2>
+  <nav aria-label="{{footerNavAria}}">
+   <h2>{{links}}</h2>
    <ul>
-    <li><a href="/download/">التنزيل</a></li>
-    <li><a href="/guide/">دليل الاستخدام</a></li>
-    <li><a href="/files/">النماذج والأسئلة</a></li>
-    <li><a href="/activation/">التفعيل والأسعار</a></li>
-    <li><a href="/privacy/">سياسة الخصوصية</a></li>
+    <li><a href="/download/">{{navDownload}}</a></li>
+    <li><a href="/guide/">{{navGuide}}</a></li>
+    <li><a href="/forms/">{{navForms}}</a></li>
+    <li><a href="/activation/">{{navActivation}}</a></li>
+    <li><a href="/privacy/">{{navPrivacy}}</a></li>
    </ul>
   </nav>
   <div>
-   <h2>تواصل معنا</h2>
+   <h2>{{contactHead}}</h2>
    <ul>
-    <li><svg class="i" aria-hidden="true"><use href="#i-chat"/></svg><a href="https://wa.me/972568806666" rel="noopener">واتساب <bdi dir="ltr">+972 56 880 6666</bdi></a></li>
+    <li><svg class="i" aria-hidden="true"><use href="#i-chat"/></svg><a href="https://wa.me/972568806666" rel="noopener">{{whatsapp}} <bdi dir="ltr">+972 56 880 6666</bdi></a></li>
     <li><svg class="i" aria-hidden="true"><use href="#i-globe"/></svg><a href="/"><bdi dir="ltr">dataxmatrix.com</bdi></a></li>
    </ul>
   </div>
  </div>
- <div class="fbar"><span>© {{year}} DataX Matrix · Iris</span><span>للمدارس الفلسطينية الحكومية والخاصة</span></div>
+ <div class="fbar"><span>© {{year}} DataX Matrix · Iris</span><span>{{tagline}}</span></div>
 </div></footer>
 <script src="/assets/js/site.js?v={{assetVersion}}" defer></script>
 </body>
