@@ -10,6 +10,29 @@
   ],
   "releases": [
     {
+      "version": "1.0.0-rc.4",
+      "date": "2026-10-17",
+      "file": "Iris-Setup-1.0.0-rc.4.exe",
+      "size": 124274581,
+      "sha256": "75733686dd551e4ee43e30e986d7b2c9e0d59a3ec2425cda9c48839f2d8fc63f",
+      "notes": [
+        "نسخة تجريبية للتثبيت الميداني. نسخة rc.3 تبقى متاحة احتياطًا.",
+        "جديد: استيراد ملفات الشعب كلها معًا («اختيار عدة ملفات» أو «اختيار مجلد») بمعاينة واحدة وتأكيد واحد",
+        "جديد: الصف والشعبة يُقرآن من اسم كل ملف (مثل «العاشر أ» أو «الحادي عشر علمي ب»)، وما لم يُفهم تختاره بيدك",
+        "الطلاب المستوردون سابقًا بلا صف يُحدَّثون إلى شعبهم برقم الهوية دون تكرار، ولا يُسأل عن طالب موجود في أي ملف على أنه غادر",
+        "إنشاء الشعب غير الموجودة مع مسارها (للحادي عشر والثاني عشر)",
+        "المثبّت غير موقّع بعد: عند ظهور SmartScreen اختر «مزيد من المعلومات» ثم «التشغيل على أي حال». تحقق من SHA256SUMS."
+      ],
+      "notes_en": [
+        "Field-testing version. rc.3 remains available as a fallback.",
+        "New: import all class files at once («Choose several files» or «Choose a folder») with one preview and one confirmation",
+        "New: grade and section are read from each file's name (e.g. «العاشر أ», «الحادي عشر علمي ب»); anything not understood is chosen by hand",
+        "Students imported earlier without a grade are moved into their classes by ID, without duplicates; a student in any of the files is never treated as having left",
+        "Missing sections are created with their stream (grades 11 and 12)",
+        "The installer is not signed yet: if SmartScreen appears, choose “More info” then “Run anyway”. Check SHA256SUMS."
+      ]
+    },
+    {
       "version": "1.0.0-rc.3",
       "date": "2026-10-17",
       "file": "Iris-Setup-1.0.0-rc.3.exe",

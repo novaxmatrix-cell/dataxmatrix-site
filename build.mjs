@@ -330,7 +330,7 @@ for (const [from, to] of Object.entries(REDIRECTS)) {
     latest: latest && {
       version: latest.version, date: latest.date, url: latest.url,
       size: latest.size, sha256: latest.sha256, notes: latest.notes,
-      page: `${SITE_URL}/download/`,
+      page: `${SITE_URL}/ar/download/`,
     },
   };
   fs.mkdirSync(path.join(DIST, 'updates'), { recursive: true });
