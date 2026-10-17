@@ -79,6 +79,7 @@ const WA_TEXT = {
   en: {
     WA_URL: 'Hello, I’m contacting you about Iris for our school.',
     WA_TRIAL_URL: 'Hello, we’d like to try Iris at our school.\nSchool name: \nCity: ',
+    WA_DEMO_URL: 'Hello, we’d like a demo of Iris for our school.\nSchool name: \nCity: ',
     WA_PRIVATE_TRIAL_URL: 'Hello, we’re a private school and would like to try Iris for free.\nSchool name: \nCity: \nApprox. number of students: ',
     WA_QUOTE_URL: 'Hello, we’d like a price quote for Iris.\nSchool name: \nCity: \nApprox. number of students: ',
     WA_ACTIVATE_URL: 'Hello, I’d like to activate Iris.\nSchool name: \nRequest code: ',
@@ -88,6 +89,7 @@ const WA_TEXT = {
   ar: {
     WA_URL: 'مرحباً، أتواصل بخصوص برنامج Iris لمدرستنا.',
     WA_TRIAL_URL: 'مرحباً، نرغب بتجربة برنامج Iris في مدرستنا.\nاسم المدرسة: \nالمدينة: ',
+    WA_DEMO_URL: 'مرحباً، نرغب بعرض لبرنامج Iris في مدرستنا.\nاسم المدرسة: \nالمدينة: ',
     WA_PRIVATE_TRIAL_URL: 'مرحباً، نحن مدرسة خاصة ونرغب بتجربة برنامج Iris مجاناً.\nاسم المدرسة: \nالمدينة: \nعدد الطلاب تقريباً: ',
     WA_QUOTE_URL: 'مرحباً، نرغب بعرض سعر لبرنامج Iris.\nاسم المدرسة: \nالمدينة: \nعدد الطلاب تقريباً: ',
     WA_ACTIVATE_URL: 'مرحباً، أرغب بتفعيل برنامج Iris.\nاسم المدرسة: \nرمز الطلب: ',
