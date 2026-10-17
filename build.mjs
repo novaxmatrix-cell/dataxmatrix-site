@@ -16,7 +16,6 @@ const DIST = path.join(ROOT, 'dist');
 const SITE_URL = 'https://dataxmatrix.com';
 const DOMAIN = 'dataxmatrix.com';
 const WHATSAPP = '972568806666';
-const EMAIL = 'support@dataxmatrix.com';
 
 const NAV = [
   ['home', '/', 'الرئيسية'],
@@ -116,7 +115,6 @@ const tokens = {
   WA_ACTIVATE_URL: () => esc(wa('مرحباً، أرغب بتفعيل برنامج Iris.\nاسم المدرسة: \nرمز الطلب: ')),
   WA_REPORT_URL: () => esc(wa('مرحباً، أود الإبلاغ عن مشكلة في برنامج Iris.\nاسم المدرسة: \nإصدار البرنامج: \nوصف المشكلة: \n(سأرفق صورة للشاشة)')),
   WA_DISPLAY: () => '<span class="ltr">056-880-6666</span>',
-  EMAIL: () => EMAIL,
   DOWNLOAD_BOX: downloadBox,
   CHANGELOG: () => changelog(),
   CHANGELOG_SHORT: () => changelog(3),

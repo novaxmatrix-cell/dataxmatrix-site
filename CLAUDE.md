@@ -33,5 +33,5 @@ Official website for **Iris** (school management desktop app for Palestinian sch
 
 - Guide URLs (`/guide/<slug>/`) are linked from the app's «دليل الاستخدام» button — never rename or remove a slug.
 - Keep it light for weak school PCs: system fonts, no frameworks, tiny JS, images as WebP with width/height.
-- Contact: WhatsApp `+972568806666` (wa.me/972568806666). `support@dataxmatrix.com` is a placeholder (not set up) — show it as text, no mailto.
+- Contact: only WhatsApp `+972568806666` (wa.me/972568806666) and the site itself. Never write an address, city, region or country tied to the owner or business anywhere (pages, meta, schema, images, JSON). «للمدارس الفلسطينية» is fine only as the target market.
 - Planned, not built: promo video page (`/video/`), auto-update consumer of `/updates/latest.json`.
