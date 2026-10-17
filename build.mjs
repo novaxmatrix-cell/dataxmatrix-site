@@ -323,7 +323,7 @@ for (const [from, to] of Object.entries(REDIRECTS)) {
   fs.writeFileSync(path.join(DIST, 'download/latest/index.html'), html);
 }
 
-// /updates/latest.json — read by Iris. Keep the schema and the (Arabic) notes unchanged.
+// /updates/latest.json — read by Iris. Keep the schema unchanged; notes and page are Arabic (Iris users read Arabic).
 {
   const body = {
     schema: 1,
