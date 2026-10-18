@@ -80,6 +80,11 @@ header nav a[aria-current="page"]{color:var(--p);font-weight:700;background:var(
 .hdr-end{display:flex;align-items:center;gap:8px}
 .icon-btn{background:transparent;border:1px solid var(--b);color:var(--t);border-radius:var(--r);width:42px;height:42px;font-size:18px;cursor:pointer;line-height:1;display:inline-flex;align-items:center;justify-content:center}
 .icon-btn:hover{background:var(--s2)}
+/* theme button: moon on the light theme, sun on the dark theme */
+.icon-btn .sun{display:none}
+:root[data-theme="dark"] .icon-btn .sun{display:block}
+:root[data-theme="dark"] .icon-btn .moon{display:none}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .icon-btn .sun{display:block}:root:not([data-theme="light"]) .icon-btn .moon{display:none}}
 .menu{display:none}
 .lang-switch{display:inline-flex;align-items:center;min-height:42px;padding:0 12px;border:1px solid var(--b);border-radius:var(--r);color:var(--t);text-decoration:none;font-size:var(--fs-sm);font-weight:700;white-space:nowrap}
 .lang-switch:hover{background:var(--s2)}
@@ -279,6 +284,8 @@ bdi{white-space:nowrap}
 .article li{margin-bottom:6px}
 .crumbs{font-size:var(--fs-sm);color:var(--m);margin-bottom:6px}
 .crumbs a{text-decoration:none}
+.crumbs .chev{vertical-align:-.15em}
+[dir="rtl"] .crumbs .chev{transform:scaleX(-1)}
 figure.ph{border:2px dashed var(--b);border-radius:var(--r);background:var(--s);color:var(--m);text-align:center;padding:40px 16px;margin:14px 0;font-size:14px}
 .callout{background:var(--pl);border-radius:var(--r);padding:16px 20px;margin:16px 0;font-size:var(--fs-sm)}
 .soon{background:var(--s);border:1px solid var(--b);border-radius:var(--r-lg);padding:32px;text-align:center}
