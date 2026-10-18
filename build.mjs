@@ -152,7 +152,7 @@ function downloadBox(lang) {
   return `<div class="dlbox">
   <h3>${t.dlTitle}</h3>
   <div class="v">${t.version} ${ltr(latest.version)} · ${fmtDate(latest.date)} · ${fmtSize(latest.size, lang)}</div>
-  <a class="btn ba" href="${esc(latest.url)}"><span>⬇ ${lang === 'en' ? 'Download' : 'تنزيل'} ${ltr(latest.file)}</span></a>
+  <a class="btn ba" href="${esc(latest.url)}"><svg class="i" aria-hidden="true"><use href="#i-download"/></svg><span>${lang === 'en' ? 'Download' : 'تنزيل'} ${ltr(latest.file)}</span></a>
   <details class="verify">
    <summary>${t.dlVerify}</summary>
    <p>${t.dlVerifyText}</p>

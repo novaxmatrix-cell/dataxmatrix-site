@@ -6,14 +6,11 @@
     return root.getAttribute('data-theme') ||
       (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
   }
-  function label() { if (btn) btn.textContent = current() === 'dark' ? '☀' : '☾'; }
   if (btn) {
-    label();
     btn.addEventListener('click', function () {
       var next = current() === 'dark' ? 'light' : 'dark';
       root.setAttribute('data-theme', next);
       try { localStorage.setItem('theme', next); } catch (e) {}
-      label();
     });
   }
   var menu = document.getElementById('menu-btn');
