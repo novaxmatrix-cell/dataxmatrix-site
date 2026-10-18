@@ -20,6 +20,8 @@ const DOMAIN = 'dataxmatrix.com';
 const WHATSAPP = '972568806666';
 const LANGS = ['en', 'ar'];
 const PREFIX = { en: '', ar: '/ar' };
+// Iris in the Microsoft Store: the primary way to get it. The direct installer (data/releases.json) stays as a fallback.
+const STORE_URL = { en: 'https://apps.microsoft.com/detail/9P5FQXQH4HF3?hl=en-us', ar: 'https://apps.microsoft.com/detail/9P5FQXQH4HF3?hl=ar-sa' };
 
 // Old Arabic URLs that moved. The app links to /guide/<slug>/, so those must keep working.
 const REDIRECTS = {
@@ -49,6 +51,7 @@ const STR = {
     dlVerify: 'Verify the file',
     dlVerifyText: 'Compare this fingerprint with the downloaded file’s fingerprint. If they match, the file is intact, exactly as we published it.',
     dlCopyAria: 'Copy SHA-256 fingerprint', dlPowershell: 'In PowerShell:',
+    storeAlt: 'Download from the Microsoft Store',
     videoAria: 'Video: ', tocAria: 'Guide contents',
   },
   ar: {
@@ -63,12 +66,13 @@ const STR = {
     fonts: ['IBMPlexSansArabic-Regular', 'IBMPlexSansArabic-Bold'],
     mb: 'ميغابايت', soon: 'قريباً', copy: 'نسخ', copied: 'تم النسخ ✓', version: 'الإصدار',
     noReleases: 'لا توجد إصدارات منشورة بعد.',
-    dlTitle: 'Iris لـ Windows',
+    dlTitle: 'برنامج <bdi dir="ltr">Iris</bdi> لأجهزة <bdi dir="ltr">Windows</bdi>',
     dlSoon: 'النسخة الأولى للمدارس قيد التجهيز وستكون متاحة للتنزيل هنا قريباً.',
     dlNotify: 'أبلغوني عند صدوره عبر واتساب',
     dlVerify: 'التحقق من سلامة الملف',
     dlVerifyText: 'قارن هذه البصمة ببصمة الملف بعد تنزيله، فإن تطابقت فالملف سليم كما نشرناه.',
     dlCopyAria: 'نسخ بصمة SHA-256', dlPowershell: 'في PowerShell:',
+    storeAlt: 'التنزيل من Microsoft Store',
     videoAria: 'فيديو: ', tocAria: 'محتويات الدليل',
   },
 };
@@ -139,14 +143,14 @@ function downloadBox(lang) {
   if (!latest) {
     return `<div class="dlbox">
   <span class="badge">${t.soon}</span>
-  <h2>${t.dlTitle}</h2>
+  <h3>${t.dlTitle}</h3>
   <div class="v">${t.dlSoon}</div>
   <a class="btn ba" href="${esc(wa(WA_TEXT[lang].WA_NOTIFY))}" rel="noopener">${t.dlNotify}</a>
   <ul>${reqList(lang)}</ul>
  </div>`;
   }
   return `<div class="dlbox">
-  <h2>${t.dlTitle}</h2>
+  <h3>${t.dlTitle}</h3>
   <div class="v">${t.version} ${ltr(latest.version)} · ${fmtDate(latest.date)} · ${fmtSize(latest.size, lang)}</div>
   <a class="btn ba" href="${esc(latest.url)}"><span>⬇ ${lang === 'en' ? 'Download' : 'تنزيل'} ${ltr(latest.file)}</span></a>
   <details class="verify">
@@ -158,6 +162,10 @@ function downloadBox(lang) {
   <ul>${reqList(lang)}</ul>
  </div>`;
 }
+
+// Microsoft's official badge, unchanged (self-hosted): dark on the light theme, light on the dark theme.
+const storeBadge = (lang) => `<a class="msb" href="${esc(STORE_URL[lang])}" rel="noopener">${['dark', 'light'].map((v) =>
+  `<img class="msb-${v}" src="/assets/img/store/ms-store-${lang}-${v}.svg" width="161" height="44" alt="${v === 'dark' ? STR[lang].storeAlt : ''}">`).join('')}</a>`;
 
 function changelog(lang, limit) {
   const list = limit ? rel.releases.slice(0, limit) : rel.releases;
@@ -190,6 +198,8 @@ function tokensFor(lang) {
   const t = {
     WA_DISPLAY: () => (lang === 'en' ? '<span class="ltr">+972 56 880 6666</span>' : '<span class="ltr">056-880-6666</span>'),
     DOWNLOAD_BOX: () => downloadBox(lang),
+    STORE_URL: () => esc(STORE_URL[lang]),
+    STORE_BADGE: () => storeBadge(lang),
     CHANGELOG: () => changelog(lang),
     CHANGELOG_SHORT: () => changelog(lang, 3),
     REQUIREMENTS: () => reqList(lang),

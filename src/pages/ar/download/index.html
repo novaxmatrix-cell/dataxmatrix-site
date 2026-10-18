@@ -1,17 +1,21 @@
-<!--meta {"title": "التنزيل", "description": "تنزيل آخر نسخة من برنامج Iris لـ Windows، متطلبات التشغيل، خطوات التثبيت وسجل التحديثات.", "nav": "download"} -->
+<!--meta {"title": "التنزيل", "description": "احصل على برنامج Iris لأجهزة Windows من Microsoft Store أو نزّل ملف التثبيت المباشر، مع متطلبات التشغيل وخطوات التثبيت وسجل التحديثات.", "nav": "download"} -->
 <div class="page-head"><div class="wrap">
  <h1 class="page">تنزيل Iris</h1>
- <p class="sub">نسخة واحدة لكل المدارس، وتُفعَّل برمز خاص بمدرستك.</p>
+ <p class="sub">احصل على Iris من Microsoft Store. نسخة واحدة لكل المدارس، وتُفعَّل برمز خاص بمدرستك.</p>
 </div></div>
 
 <section style="padding-top:8px"><div class="wrap">
- <div class="dl">
- {{DOWNLOAD_BOX}}
-  <div class="log">
-   <h3>آخر التحديثات</h3>
-   {{CHANGELOG_SHORT}}
-   <div class="item"><a href="#changelog">سجل التحديثات الكامل ←</a></div>
+ <div class="store">
+  <div>
+   <h2>برنامج <bdi dir="ltr">Iris</bdi> لأجهزة <bdi dir="ltr">Windows</bdi></h2>
+   <p class="v">من Microsoft Store، الطريقة الموصى بها لتثبيت Iris.</p>
+   {{STORE_BADGE}}
   </div>
+  <ul class="perks">
+   <li><svg class="i" aria-hidden="true"><use href="#i-ok"/></svg><span><b>موثّق من Microsoft</b>بلا تحذيرات من مكافح الفيروسات أو SmartScreen.</span></li>
+   <li><svg class="i" aria-hidden="true"><use href="#i-ok"/></svg><span><b>تنزيل سريع</b>يُثبَّت بخطوة واحدة، دون ملف إعداد تشغّله بنفسك.</span></li>
+   <li><svg class="i" aria-hidden="true"><use href="#i-ok"/></svg><span><b>تحديثات تلقائية</b>يُبقي Windows برنامج Iris محدّثاً.</span></li>
+  </ul>
  </div>
 </div></section>
 
@@ -19,15 +23,30 @@
  <h2>خطوات التثبيت</h2>
  <p class="sub">التثبيت يستغرق دقيقتين تقريباً على جهاز المدرسة.</p>
  <div class="steps">
-  <div class="step"><h3>نزّل الملف</h3><p>اضغط زر التنزيل أعلاه واحفظ ملف الإعداد (Setup) على الجهاز.</p></div>
-  <div class="step"><h3>شغّل ملف الإعداد</h3><p>افتح الملف بالنقر المزدوج. إن ظهرت رسالة Windows الزرقاء «<bdi dir="ltr">Windows protected your PC</bdi>» اضغط «<bdi dir="ltr">More info</bdi>» ثم «<bdi dir="ltr">Run anyway</bdi>».</p></div>
-  <div class="step"><h3>أكمل التثبيت</h3><p>اتبع الخطوات حتى النهاية، وسيظهر Iris على سطح المكتب وفي قائمة ابدأ.</p></div>
-  <div class="step"><h3>فعّل البرنامج</h3><p>افتح Iris واتبع <a href="/activation/">خطوات التفعيل</a>.</p></div>
+  <div class="step"><h3>افتح صفحة المتجر</h3><p>اضغط «التنزيل من Microsoft Store» أعلاه، فيفتح Microsoft Store على صفحة Iris.</p></div>
+  <div class="step"><h3>ثبّت البرنامج</h3><p>اضغط زر التثبيت في المتجر، وسينزّل Windows برنامج Iris ويثبّته وحده.</p></div>
+  <div class="step"><h3>افتح Iris</h3><p>يظهر Iris في قائمة ابدأ، فافتحه من هناك.</p></div>
+  <div class="step"><h3>فعّل البرنامج</h3><p>اتبع <a href="/activation/">خطوات التفعيل</a>.</p></div>
  </div>
- <div class="callout" style="margin-top:24px">تظهر رسالة Windows الزرقاء لأن البرنامج جديد وليس لأنه غير آمن. نزّل Iris دائماً من هذه الصفحة فقط.</div>
 </div></section>
 
-<section id="changelog"><div class="wrap">
+<section id="direct"><div class="wrap">
+ <h2>ملف التثبيت المباشر</h2>
+ <p class="sub">برنامج Iris نفسه كملف إعداد، للأجهزة التي لا يتوفر فيها Microsoft Store.</p>
+ <div class="direct">
+ {{DOWNLOAD_BOX}}
+  <div>
+   <ol class="howto">
+    <li>نزّل ملف الإعداد (Setup) وافتحه بالنقر المزدوج.</li>
+    <li>إن ظهرت رسالة Windows الزرقاء «<bdi dir="ltr">Windows protected your PC</bdi>» اضغط «<bdi dir="ltr">More info</bdi>» ثم «<bdi dir="ltr">Run anyway</bdi>». تظهر لأن ملف التثبيت جديد وليس لأنه غير آمن.</li>
+    <li>أكمل الخطوات حتى النهاية، ثم <a href="/activation/">فعّل البرنامج</a>.</li>
+   </ol>
+   <div class="callout"><b>لا تثبّت النسختين على الجهاز نفسه أبداً.</b> للانتقال إلى نسخة المتجر، أزِل نسخة Iris العادية أولاً من إعدادات Windows ← التطبيقات. بيانات المدرسة تبقى محفوظة.</div>
+  </div>
+ </div>
+</div></section>
+
+<section id="changelog" class="alt"><div class="wrap">
  <h2>سجل التحديثات</h2>
  <div class="log" style="margin-top:16px">
   {{CHANGELOG}}

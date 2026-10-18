@@ -1,17 +1,21 @@
-<!--meta {"title": "Download", "description": "Download the latest version of Iris for Windows: system requirements, installation steps and release notes.", "nav": "download"} -->
+<!--meta {"title": "Download", "description": "Get Iris for Windows from the Microsoft Store, or download the direct installer: system requirements, installation steps and release notes.", "nav": "download"} -->
 <div class="page-head"><div class="wrap">
  <h1 class="page">Download Iris</h1>
- <p class="sub">One version for every school, activated with a code for your school.</p>
+ <p class="sub">Get Iris from the Microsoft Store. One version for every school, activated with a code for your school.</p>
 </div></div>
 
 <section style="padding-top:8px"><div class="wrap">
- <div class="dl">
- {{DOWNLOAD_BOX}}
-  <div class="log">
-   <h3>Latest updates</h3>
-   {{CHANGELOG_SHORT}}
-   <div class="item"><a href="#changelog">Full release history →</a></div>
+ <div class="store">
+  <div>
+   <h2>Iris for Windows</h2>
+   <p class="v">From the Microsoft Store, the recommended way to install Iris.</p>
+   {{STORE_BADGE}}
   </div>
+  <ul class="perks">
+   <li><svg class="i" aria-hidden="true"><use href="#i-ok"/></svg><span><b>Verified by Microsoft</b>No antivirus or SmartScreen warnings.</span></li>
+   <li><svg class="i" aria-hidden="true"><use href="#i-ok"/></svg><span><b>Fast download</b>Installs in one step, no setup file to run.</span></li>
+   <li><svg class="i" aria-hidden="true"><use href="#i-ok"/></svg><span><b>Automatic updates</b>Windows keeps Iris up to date.</span></li>
+  </ul>
  </div>
  <p class="more">Iris itself is in Arabic.</p>
 </div></section>
@@ -20,15 +24,30 @@
  <h2>Installation steps</h2>
  <p class="sub">Installation takes about two minutes on the school’s computer.</p>
  <div class="steps">
-  <div class="step"><h3>Download the file</h3><p>Press the download button above and save the setup file on the computer.</p></div>
-  <div class="step"><h3>Run the setup file</h3><p>Double-click the file. If the blue Windows message “Windows protected your PC” appears, press “More info”, then “Run anyway”.</p></div>
-  <div class="step"><h3>Finish the installation</h3><p>Follow the steps to the end. Iris will appear on the desktop and in the Start menu.</p></div>
-  <div class="step"><h3>Activate Iris</h3><p>Open Iris and follow the <a href="/activation/">activation steps</a>.</p></div>
+  <div class="step"><h3>Open the Store page</h3><p>Press “Download from the Microsoft Store” above. The Microsoft Store opens on the Iris page.</p></div>
+  <div class="step"><h3>Install Iris</h3><p>Press the install button in the Store. Windows downloads and installs Iris by itself.</p></div>
+  <div class="step"><h3>Open Iris</h3><p>Iris appears in the Start menu. Open it from there.</p></div>
+  <div class="step"><h3>Activate Iris</h3><p>Follow the <a href="/activation/">activation steps</a>.</p></div>
  </div>
- <div class="callout" style="margin-top:24px">The blue Windows message appears because the program is new, not because it is unsafe. Always download Iris from this page only.</div>
 </div></section>
 
-<section id="changelog"><div class="wrap">
+<section id="direct"><div class="wrap">
+ <h2>Direct installer</h2>
+ <p class="sub">The same Iris as a setup file, for computers without the Microsoft Store.</p>
+ <div class="direct">
+ {{DOWNLOAD_BOX}}
+  <div>
+   <ol class="howto">
+    <li>Download the setup file and double-click it.</li>
+    <li>If the blue Windows message “Windows protected your PC” appears, press “More info”, then “Run anyway”. It appears because the installer is new, not because it is unsafe.</li>
+    <li>Follow the steps to the end, then <a href="/activation/">activate Iris</a>.</li>
+   </ol>
+   <div class="callout"><b>Never install both versions on the same computer.</b> To move to the Store version, first uninstall the normal Iris from Windows Settings → Apps. The school’s data is kept.</div>
+  </div>
+ </div>
+</div></section>
+
+<section id="changelog" class="alt"><div class="wrap">
  <h2>Release history</h2>
  <div class="log" style="margin-top:16px">
   {{CHANGELOG}}
