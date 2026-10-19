@@ -10,6 +10,33 @@
   ],
   "releases": [
     {
+      "version": "1.0.0-rc.5",
+      "date": "2026-10-19",
+      "file": "Iris-Setup-1.0.0-rc.5.exe",
+      "size": 124334495,
+      "sha256": "912a241fe2e8e2d952c18a6e2239da160fe7a107668b52c5f571747c247b0c9d",
+      "notes": [
+        "نسخة تجريبية للتثبيت الميداني. نسختا rc.4 وrc.3 تبقيان متاحتين احتياطًا.",
+        "استيراد أمتن لملفات نظام الوزارة: أسماء أعمدة أكثر (منها الرقم الوطني)، ولو تغيّر ترتيب الأعمدة أو زاد عددها أو نقص",
+        "البرنامج يتذكّر العمود الذي تربطه بيدك مرة واحدة، ويمكنك مراجعة ما تذكّره أو حذفه من الإعدادات",
+        "قوالب Excel فارغة لاستيراد الموظفين والحضور، مع رابط إليها عند تعذّر قراءة الملف",
+        "جديد: «تصدير ملف الدعم الفني»، ملف نصي بمعلومات تقنية فقط تعاينه قبل حفظه",
+        "لا شاشة فارغة: إذا تعذّر تحميل البيانات تظهر رسالة مع «إعادة المحاولة»، وإذا رُفض الفتح لسبب غير كلمة المرور يظهر السبب",
+        "جديد: شاشة «حول البرنامج» (الإصدار وروابط الموقع والدعم عبر واتساب)",
+        "المثبّت غير موقّع بعد: عند ظهور SmartScreen اختر «مزيد من المعلومات» ثم «التشغيل على أي حال». تحقق من SHA256SUMS."
+      ],
+      "notes_en": [
+        "Field-testing version. rc.4 and rc.3 remain available as fallbacks.",
+        "Sturdier import of the ministry system's files: more column names (including the national number), even when columns are reordered, added or missing",
+        "A column you match by hand once is remembered; you can review or delete what was learned in the settings",
+        "Blank Excel templates for the staff and attendance imports, linked when a file cannot be read",
+        "New: «Export support file», a plain-text file with technical facts only, previewed before saving",
+        "No blank screens: if data cannot load, a message with «Retry» appears; if unlocking fails for a reason other than the password, the reason is shown",
+        "New: «About» screen (version, website and WhatsApp support links)",
+        "The installer is not signed yet: if SmartScreen appears, choose “More info” then “Run anyway”. Check SHA256SUMS."
+      ]
+    },
+    {
       "version": "1.0.0-rc.4",
       "date": "2026-10-17",
       "file": "Iris-Setup-1.0.0-rc.4.exe",
