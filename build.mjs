@@ -20,7 +20,7 @@ const DOMAIN = 'dataxmatrix.com';
 const WHATSAPP = '972568806666';
 const LANGS = ['en', 'ar'];
 const PREFIX = { en: '', ar: '/ar' };
-// Iris in the Microsoft Store: the primary way to get it. The direct installer (data/releases.json) stays as a fallback.
+// Iris is distributed only through the Microsoft Store. The direct installers are retired; data/releases.json keeps their history.
 const STORE_URL = { en: 'https://apps.microsoft.com/detail/9P5FQXQH4HF3?hl=en-us', ar: 'https://apps.microsoft.com/detail/9P5FQXQH4HF3?hl=ar-sa' };
 
 // Old Arabic URLs that moved. The app links to /guide/<slug>/, so those must keep working.
@@ -44,14 +44,6 @@ const STR = {
     links: 'Links', contact: 'Contact us', whatsapp: 'WhatsApp', support: 'Technical support', tagline: 'For Palestinian government and private schools',
     familyUrl: 'https://novaxmatrix.com/', family: 'DataX Matrix is part of NovaX Matrix',
     fonts: ['IBMPlexSans-Regular', 'IBMPlexSans-Bold'],
-    mb: 'MB', soon: 'Coming soon', copy: 'Copy', copied: 'Copied ✓', version: 'Version',
-    noReleases: 'No releases published yet.',
-    dlTitle: 'Iris for Windows',
-    dlSoon: 'The first version for schools is being prepared and will be available to download here soon.',
-    dlNotify: 'Notify me on WhatsApp when it’s out',
-    dlVerify: 'Verify the file',
-    dlVerifyText: 'Compare this fingerprint with the downloaded file’s fingerprint. If they match, the file is intact, exactly as we published it.',
-    dlCopyAria: 'Copy SHA-256 fingerprint', dlPowershell: 'In PowerShell:',
     storeAlt: 'Download from the Microsoft Store',
     videoAria: 'Video: ', tocAria: 'Guide contents',
   },
@@ -66,14 +58,6 @@ const STR = {
     links: 'روابط', contact: 'تواصل معنا', whatsapp: 'واتساب', support: 'الدعم الفني', tagline: 'للمدارس الفلسطينية الحكومية والخاصة',
     familyUrl: 'https://novaxmatrix.com/ar/', family: '<bdi dir="ltr">DataX Matrix</bdi> جزء من <bdi dir="ltr">NovaX Matrix</bdi>',
     fonts: ['IBMPlexSansArabic-Regular', 'IBMPlexSansArabic-Bold'],
-    mb: 'ميغابايت', soon: 'قريباً', copy: 'نسخ', copied: 'تم النسخ ✓', version: 'الإصدار',
-    noReleases: 'لا توجد إصدارات منشورة بعد.',
-    dlTitle: 'برنامج <bdi dir="ltr">Iris</bdi> لأجهزة <bdi dir="ltr">Windows</bdi>',
-    dlSoon: 'النسخة الأولى للمدارس قيد التجهيز وستكون متاحة للتنزيل هنا قريباً.',
-    dlNotify: 'أبلغوني عند صدوره عبر واتساب',
-    dlVerify: 'التحقق من سلامة الملف',
-    dlVerifyText: 'قارن هذه البصمة ببصمة الملف بعد تنزيله، فإن تطابقت فالملف سليم كما نشرناه.',
-    dlCopyAria: 'نسخ بصمة SHA-256', dlPowershell: 'في PowerShell:',
     storeAlt: 'التنزيل من Microsoft Store',
     videoAria: 'فيديو: ', tocAria: 'محتويات الدليل',
   },
@@ -90,7 +74,6 @@ const WA_TEXT = {
     WA_QUOTE_URL: 'Hello, we’d like a price quote for Iris.\nSchool name: \nCity: \nApprox. number of students: ',
     WA_ACTIVATE_URL: 'Hello, I’d like to activate Iris.\nSchool name: \nRequest code: ',
     WA_REPORT_URL: 'Hello, I’d like to report a problem with Iris.\nSchool name: \nIris version: \nWhat happened: \n(I’ll attach a screenshot)',
-    WA_NOTIFY: 'Hello, please let me know when Iris is released for our school.',
   },
   ar: {
     WA_URL: 'مرحباً، أتواصل بخصوص برنامج Iris لمدرستنا.',
@@ -100,7 +83,6 @@ const WA_TEXT = {
     WA_QUOTE_URL: 'مرحباً، نرغب بعرض سعر لبرنامج Iris.\nاسم المدرسة: \nالمدينة: \nعدد الطلاب تقريباً: ',
     WA_ACTIVATE_URL: 'مرحباً، أرغب بتفعيل برنامج Iris.\nاسم المدرسة: \nرمز الطلب: ',
     WA_REPORT_URL: 'مرحباً، أود الإبلاغ عن مشكلة في برنامج Iris.\nاسم المدرسة: \nإصدار البرنامج: \nوصف المشكلة: \n(سأرفق صورة للشاشة)',
-    WA_NOTIFY: 'مرحباً، أرغب بأن تبلغوني عند صدور برنامج Iris لمدرستنا.',
   },
 };
 
@@ -109,7 +91,6 @@ const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&
 const wa = (text) => `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(text)}`;
 const ltr = (s) => `<bdi dir="ltr">${esc(s)}</bdi>`;
 const fmtDate = (iso) => { const [y, m, d] = iso.split('-'); return ltr(`${d}/${m}/${y}`); };
-const fmtSize = (bytes, lang) => `${ltr(Math.round(bytes / 1048576))} ${STR[lang].mb}`;
 // English text quoting the app's Arabic labels: the text inside «…» is isolated as right-to-left.
 const enText = (s) => esc(s).replace(/«([^»]*)»/g, '«<bdi lang="ar" dir="rtl">$1</bdi>»');
 const text = (s, lang) => (lang === 'en' ? enText(s) : esc(s));
@@ -132,49 +113,16 @@ for (const r of rel.releases) {
   if (!/^\d{4}-\d{2}-\d{2}$/.test(r.date)) fail(`bad date "${r.date}" (use YYYY-MM-DD)`);
   if (!/^[0-9a-f]{64}$/i.test(r.sha256)) fail(`bad sha256 for ${r.version}`);
   for (const k of ['notes', 'notes_en']) if (!Array.isArray(r[k]) || !r[k].length) fail(`release ${r.version} needs at least one entry in "${k}"`);
-  r.url = r.url || `https://github.com/${rel.repo}/releases/download/v${r.version}/${r.file}`;
 }
 if (!rel.requirements_en || rel.requirements_en.length !== rel.requirements.length) fail('releases.json: "requirements_en" must match "requirements"');
-const latest = rel.releases[0] || null;
+const lastInstaller = rel.releases[0] || fail('releases.json: keep the last installer entry (latest.json reuses its size and sha256)');
 
 const reqList = (lang) => pick(rel, 'requirements', lang)
   .map((x) => `<li>${lang === 'ar' ? esc(x).replace(/\d+(?:-bit| GB)\b/g, (m) => `<bdi dir="ltr">${m}</bdi>`) : esc(x)}</li>`).join('');
 
-function downloadBox(lang) {
-  const t = STR[lang];
-  if (!latest) {
-    return `<div class="dlbox">
-  <span class="badge">${t.soon}</span>
-  <h3>${t.dlTitle}</h3>
-  <div class="v">${t.dlSoon}</div>
-  <a class="btn ba" href="${esc(wa(WA_TEXT[lang].WA_NOTIFY))}" rel="noopener">${t.dlNotify}</a>
-  <ul>${reqList(lang)}</ul>
- </div>`;
-  }
-  return `<div class="dlbox">
-  <h3>${t.dlTitle}</h3>
-  <div class="v">${t.version} ${ltr(latest.version)} · ${fmtDate(latest.date)} · ${fmtSize(latest.size, lang)}</div>
-  <a class="btn ba" href="${esc(latest.url)}"><svg class="i" aria-hidden="true"><use href="#i-download"/></svg><span>${lang === 'en' ? 'Download' : 'تنزيل'} ${ltr(latest.file)}</span></a>
-  <details class="verify">
-   <summary>${t.dlVerify}</summary>
-   <p>${t.dlVerifyText}</p>
-   <div class="hashrow"><code class="hash" id="sha256">${esc(latest.sha256)}</code><button class="copy" type="button" data-copy="sha256" data-done="${t.copied}" aria-label="${t.dlCopyAria}">${t.copy}</button></div>
-   <small><bdi dir="ltr">SHA-256</bdi> · ${t.dlPowershell} <bdi dir="ltr">Get-FileHash ${esc(latest.file)}</bdi></small>
-  </details>
-  <ul>${reqList(lang)}</ul>
- </div>`;
-}
-
 // Microsoft's official badge, unchanged (self-hosted): dark on the light theme, light on the dark theme.
 const storeBadge = (lang) => `<a class="msb" href="${esc(STORE_URL[lang])}" rel="noopener">${['dark', 'light'].map((v) =>
   `<img class="msb-${v}" src="/assets/img/store/ms-store-${lang}-${v}.svg" width="161" height="44" alt="${v === 'dark' ? STR[lang].storeAlt : ''}">`).join('')}</a>`;
-
-function changelog(lang, limit) {
-  const list = limit ? rel.releases.slice(0, limit) : rel.releases;
-  if (!list.length) return `<div class="item">${STR[lang].noReleases}</div>`;
-  return list.map((r) => `<div class="item" id="v${esc(r.version)}"><b>${ltr(r.version)}</b> <small>${fmtDate(r.date)}</small>
-   <ul>${pick(r, 'notes', lang).map((n) => `<li>${esc(n)}</li>`).join('')}</ul></div>`).join('\n');
-}
 
 // ---------- guide (data/guide.json → /guide/, /ar/guide/ and the Arabic chapter pages) ----------
 const guide = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/guide.json'), 'utf8'));
@@ -199,13 +147,10 @@ const guideChapters = (lang) => guide.map((c, i) => `<div class="chap" id="${esc
 function tokensFor(lang) {
   const t = {
     WA_DISPLAY: () => (lang === 'en' ? '<span class="ltr">+972 56 880 6666</span>' : '<span class="ltr">056-880-6666</span>'),
-    DOWNLOAD_BOX: () => downloadBox(lang),
     STORE_URL: () => esc(STORE_URL[lang]),
+    STORE_URL_AR: () => esc(STORE_URL.ar),
     STORE_BADGE: () => storeBadge(lang),
-    CHANGELOG: () => changelog(lang),
-    CHANGELOG_SHORT: () => changelog(lang, 3),
     REQUIREMENTS: () => reqList(lang),
-    LATEST_VERSION: () => (latest ? ltr(latest.version) : STR[lang].soon),
     GUIDE_TOC: () => guideToc(lang),
     GUIDE_CHAPTERS: () => guideChapters(lang),
   };
@@ -292,7 +237,7 @@ for (const p of pages) {
     fontPreload: t.fonts.map((f) => `<link rel="preload" href="/assets/fonts/${f}.woff2" as="font" type="font/woff2" crossorigin>`).join('\n'),
     alternates,
     langRedirect,
-    skip: t.skip, navAria: t.navAria, footerNavAria: t.footerNavAria, downloadBtn: t.downloadBtn,
+    skip: t.skip, navAria: t.navAria, footerNavAria: t.footerNavAria, downloadBtn: t.downloadBtn, storeUrl: esc(STORE_URL[p.lang]),
     themeAria: t.themeAria, menuAria: t.menuAria,
     footerAbout: t.footerAbout, links: t.links, contactHead: t.contact, whatsapp: t.whatsapp, support: t.support, tagline: t.tagline, familyUrl: t.familyUrl, family: t.family,
     navDownload: t.nav.download, navGuide: t.nav.guide, navForms: t.nav.forms, navActivation: t.nav.activation, navPrivacy: t.privacy,
@@ -325,25 +270,36 @@ for (const [from, to] of Object.entries(REDIRECTS)) {
   fs.writeFileSync(path.join(DIST, from, 'index.html'), html);
 }
 
-// /download/latest/ — stable link to the newest installer (static redirect). The app links here.
+// /download/latest/ — old stable link to the newest installer. Iris is Store-only now, so it sends people to the Store.
 {
-  const target = latest ? latest.url : '/download/';
   const html = `<!doctype html><html lang="ar" dir="rtl"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex">
-<title>تنزيل Iris</title><meta http-equiv="refresh" content="0; url=${esc(target)}">
+<title>Iris في Microsoft Store</title><meta http-equiv="refresh" content="0; url=${esc(STORE_URL.ar)}">
 <style>body{font-family:"Segoe UI",Tahoma,sans-serif;background:#F7F6F2;color:#1F2A28;padding:40px 16px;text-align:center}a{color:#0F766E}</style>
-</head><body><p>${latest ? `جارٍ تنزيل Iris ${ltr(latest.version)}…` : 'لا توجد نسخة منشورة بعد.'} <a href="${esc(target)}">اضغط هنا إن لم يبدأ التحويل</a>.</p></body></html>\n`;
+</head><body><p>يتوفر Iris الآن من <bdi dir="ltr">Microsoft Store</bdi> فقط. <a href="${esc(STORE_URL.ar)}">افتح صفحة Iris في المتجر</a>.</p></body></html>\n`;
   fs.mkdirSync(path.join(DIST, 'download/latest'), { recursive: true });
   fs.writeFileSync(path.join(DIST, 'download/latest/index.html'), html);
 }
 
-// /updates/latest.json — read by Iris. Keep the schema unchanged; notes and page are Arabic (Iris users read Arabic).
+// /updates/latest.json — read by direct installs rc.3–rc.5 (rc.2 has no update check). Same schema and field types they expect:
+// a `version` newer than theirs shows «يتوفر تحديث Iris <version>» with `notes`, and «تنزيل» opens only dataxmatrix.com links,
+// so `url` and `page` lead to the Store through /download/latest/ and /ar/download/. `size` and `sha256` stay those of the
+// last installer only to keep the types; nothing downloads it. Store builds update through the Store.
+const STORE_MOVE = {
+  version: '1.0.0-rc.6',
+  date: '2026-10-20',
+  notes: [
+    'انتقل Iris إلى Microsoft Store، ومن هناك تصلك التحديثات تلقائياً. نسخ ملف التثبيت المباشر لن تصلها تحديثات بعد الآن.',
+    'اضغط «تنزيل» لفتح صفحة Iris في المتجر، أو افتح: apps.microsoft.com/detail/9P5FQXQH4HF3',
+    'قبل الانتقال، خذ نسخة احتياطية من داخل البرنامج، ثم استعدها في نسخة المتجر. إذا لم تظهر بياناتك تواصلوا معنا.',
+  ],
+};
 {
   const body = {
     schema: 1,
-    latest: latest && {
-      version: latest.version, date: latest.date, url: latest.url,
-      size: latest.size, sha256: latest.sha256, notes: latest.notes,
+    latest: {
+      version: STORE_MOVE.version, date: STORE_MOVE.date, url: `${SITE_URL}/download/latest/`,
+      size: lastInstaller.size, sha256: lastInstaller.sha256, notes: STORE_MOVE.notes,
       page: `${SITE_URL}/ar/download/`,
     },
   };
@@ -357,4 +313,4 @@ fs.writeFileSync(path.join(DIST, 'robots.txt'), `User-agent: *\nAllow: /\nSitema
 fs.writeFileSync(path.join(DIST, 'CNAME'), DOMAIN + '\n');
 fs.writeFileSync(path.join(DIST, '.nojekyll'), '');
 
-console.log(`built ${pages.length} pages (${LANGS.join(' + ')}) and ${Object.keys(REDIRECTS).length} redirects into dist/ — latest release: ${latest ? latest.version : 'none (download shows «قريباً»)'}`);
+console.log(`built ${pages.length} pages (${LANGS.join(' + ')}) and ${Object.keys(REDIRECTS).length} redirects into dist/ — Store-only; latest.json announces the move (${STORE_MOVE.version})`);
