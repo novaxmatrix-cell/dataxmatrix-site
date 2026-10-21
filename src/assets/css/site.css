@@ -327,6 +327,9 @@ footer a:hover{color:#fff}
 footer .brand{color:#fff;margin-bottom:10px}
 footer .brand img{width:36px;height:36px}
 .fbar{border-top:1px solid rgba(255,255,255,.1);padding:18px 0 22px;font-size:var(--fs-xs);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.fbar .mk{width:1.15em;height:1.15em;vertical-align:-.2em;margin-inline-end:5px}
+.xm{display:flex;justify-content:center;padding:0 0 22px}
+.xm .mk{width:18px;height:18px}
 
 /* Scroll reveal: only when JS runs and motion is welcome */
 @media (prefers-reduced-motion:no-preference){
