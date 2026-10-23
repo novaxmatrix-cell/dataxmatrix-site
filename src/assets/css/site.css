@@ -291,6 +291,7 @@ section.alt .step{background:var(--bg)}
 
 /* Pricing */
 .price{display:grid;grid-template-columns:repeat(2,1fr);gap:28px 20px;margin-top:36px}
+.price.one{grid-template-columns:minmax(0,560px);margin-top:28px}
 .pc{position:relative;border:1.5px solid var(--b);border-radius:var(--r-lg);padding:26px;background:var(--s);box-shadow:var(--sh-sm)}
 section.alt .pc{background:var(--bg)}
 section.alt .pc.best{background:var(--s)}
@@ -298,7 +299,6 @@ section.alt .pc.best{background:var(--s)}
 .pc h3{font-size:var(--fs-lg)}
 .pc .pay{color:var(--t);font-size:var(--fs-sm);margin:6px 0 12px}
 .pc li{font-size:var(--fs-sm);margin-inline-start:18px;color:var(--m)}
-.ribbon{position:absolute;top:-14px;inset-inline-end:22px;background:var(--p);color:var(--on-p);font-size:var(--fs-xs);font-weight:700;border-radius:var(--r-pill);padding:3px 14px}
 .trial{display:flex;align-items:center;gap:12px 18px;flex-wrap:wrap;background:var(--pl);border-radius:var(--r-lg);padding:18px 22px;margin-top:20px}
 .trial .badge{margin:0}
 .trial p{flex:1 1 220px;font-size:var(--fs-sm)}
