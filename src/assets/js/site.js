@@ -51,6 +51,32 @@
     Array.prototype.forEach.call(rv, function (el) { el.classList.add('in'); });
   }
 
+  // Home: the DataX grid lights Iris's square, then zooms into it once and lands on the Iris section
+  // (same colour). CSS makes the stage tall and sticky only with JS and when motion is welcome.
+  var stage = document.querySelector('.zoom');
+  if (stage && 'IntersectionObserver' in window && matchMedia('(prefers-reduced-motion: no-preference)').matches) {
+    var zs = stage.querySelector('.zs'), zw = stage.querySelector('.zgw'), zi = stage.querySelector('.zi'), zc = stage.querySelector('.zcap');
+    var clamp = function (x) { return x < 0 ? 0 : x > 1 ? 1 : x; };
+    var queued = false;
+    var draw = function () {
+      queued = false;
+      var vh = innerHeight, top = stage.getBoundingClientRect().top;
+      var z = clamp(-top / (stage.offsetHeight - zs.offsetHeight));
+      var e = clamp((z - .08) / .92); e = e * e * (3 - 2 * e);
+      var w = zw.offsetWidth, dy = zs.offsetHeight / 2 + 34 - (zw.offsetTop + .87 * w);
+      var s = Math.pow(1.06 * Math.max(innerWidth, vh) / (.26 * w), e);
+      zi.style.opacity = clamp((.5 * vh - top) / (.5 * vh));
+      zc.style.opacity = 1 - clamp(z / .3);
+      zw.style.transform = 'translateY(' + (dy * e).toFixed(1) + 'px) scale(' + s.toFixed(3) + ')';
+    };
+    var req = function () { if (!queued) { queued = true; requestAnimationFrame(draw); } };
+    new IntersectionObserver(function (en) {
+      if (en[0].isIntersecting) { addEventListener('scroll', req, { passive: true }); addEventListener('resize', req); }
+      else { removeEventListener('scroll', req); removeEventListener('resize', req); }
+      draw();
+    }).observe(stage);
+  }
+
   // Promo video in a dialog. The link falls back to the plain mp4 without JS or <dialog>.
   var dlg = document.getElementById('promo');
   var promo = document.querySelector('[data-promo]');
