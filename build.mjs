@@ -35,7 +35,7 @@ const REDIRECTS = {
 const STR = {
   en: {
     dir: 'ltr', ogLocale: 'en_US', ogImage: 'og-en.png', switchLabel: 'English',
-    homeTitle: 'Iris – School management software', titleSuffix: ' – Iris',
+    homeTitle: 'DataX Matrix · Iris, school management software', titleSuffix: ' – Iris',
     nav: { home: 'Home', download: 'Download', activation: 'Activation & pricing', guide: 'User guide', forms: 'Forms & FAQ', contact: 'Contact' },
     privacy: 'Privacy policy',
     skip: 'Skip to content', navAria: 'Main menu', footerNavAria: 'Footer links', downloadBtn: 'Download Iris',
@@ -49,7 +49,7 @@ const STR = {
   },
   ar: {
     dir: 'rtl', ogLocale: 'ar_AR', ogImage: 'og.png', switchLabel: 'العربية',
-    homeTitle: 'Iris – نظام إدارة المدرسة', titleSuffix: ' – Iris',
+    homeTitle: 'DataX Matrix · Iris – نظام إدارة المدرسة', titleSuffix: ' – Iris',
     nav: { home: 'الرئيسية', download: 'التنزيل', activation: 'التفعيل والأسعار', guide: 'دليل الاستخدام', forms: 'النماذج والأسئلة', contact: 'تواصل معنا' },
     privacy: 'سياسة الخصوصية',
     skip: 'تخطَّ إلى المحتوى', navAria: 'القائمة الرئيسية', footerNavAria: 'روابط التذييل', downloadBtn: 'تنزيل Iris',

@@ -39,8 +39,8 @@
   color-scheme:dark;
  }
 }
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .frame img,:root:not([data-theme="light"]) .group .pic img{filter:brightness(.9)}}
-:root[data-theme="dark"] .frame img,:root[data-theme="dark"] .group .pic img{filter:brightness(.9)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .frame img{filter:brightness(.9)}}
+:root[data-theme="dark"] .frame img{filter:brightness(.9)}
 :root[data-theme="dark"]{
  --p:#7EAAFF;--pd:#A6C4FF;--pl:#15233F;--on-p:#06142C;
  --a:#3CC8F5;--on-a:#03192C;
@@ -71,8 +71,9 @@ h1,h2,h3{font-weight:700;letter-spacing:0}
 /* Header */
 header{background:color-mix(in srgb,var(--s) 88%,transparent);backdrop-filter:saturate(1.4) blur(10px);-webkit-backdrop-filter:saturate(1.4) blur(10px);border-bottom:1px solid var(--b);position:sticky;top:0;z-index:10}
 header .wrap{display:flex;align-items:center;justify-content:space-between;height:68px;gap:12px}
-.brand{display:flex;align-items:center;gap:10px;font-weight:700;font-size:22px;color:var(--t);text-decoration:none;direction:ltr}
+.brand{display:flex;white-space:nowrap;align-items:center;gap:10px;font-weight:700;font-size:22px;color:var(--t);text-decoration:none;direction:ltr}
 .brand img{width:40px;height:40px;border-radius:50%}
+.brand .bm{width:30px;height:30px;color:var(--t)}
 header nav{display:flex;gap:4px;font-size:var(--fs-sm)}
 header nav a{color:var(--t);text-decoration:none;padding:6px 10px;border-radius:8px}
 header nav a:hover{background:var(--s2)}
@@ -104,29 +105,85 @@ header nav a[aria-current="page"]{color:var(--p);font-weight:700;background:var(
 .cta{display:flex;gap:12px;flex-wrap:wrap}
 .btn.lg{min-height:52px;padding:12px 26px;font-size:var(--fs-md);border-radius:var(--r)}
 
-/* Home: hero */
-.h-hero{position:relative;padding:72px 0 0;background:linear-gradient(180deg,var(--s) 0%,var(--bg) 100%);overflow:hidden}
-.h-hero::before{content:"";position:absolute;inset:0 0 auto;height:520px;background:radial-gradient(48% 60% at 50% 0%,color-mix(in srgb,var(--p) 10%,transparent),transparent 70%);pointer-events:none}
-.h-intro{position:relative;max-width:900px;margin:0 auto;text-align:center}
-.eyebrow{display:inline-block;font-size:var(--fs-sm);font-weight:700;color:var(--p);margin-bottom:18px}
-.h-hero h1{font-size:var(--fs-display);line-height:1.3;margin-bottom:22px;color:var(--t);text-wrap:balance}
-html[lang="en"] .h-hero h1{line-height:1.08;letter-spacing:-.025em}
-.h-hero .lead{font-size:var(--fs-lg);color:var(--m);max-width:38em;margin:0 auto 34px;line-height:1.75}
-html[lang="en"] .h-hero .lead{line-height:1.6}
-.h-hero .cta{justify-content:center}
-.h-meta{display:flex;justify-content:center;flex-wrap:wrap;gap:6px 22px;margin-top:22px;font-size:var(--fs-sm);color:var(--m);list-style:none}
-.h-meta li{display:inline-flex;align-items:center;gap:7px}
-.h-meta svg.i{color:var(--p);font-size:1.1em}
-.h-meta a{color:var(--t);font-weight:700;text-decoration:none}
-.h-meta a:hover{text-decoration:underline}
-.h-meta bdi{font-weight:400;color:var(--m)}
+/* Home: hero — DataX Matrix beside its large mark, and the Iris card above the fold */
+.dx-hero{position:relative;padding:64px 0 72px;background:linear-gradient(180deg,var(--s) 0%,var(--bg) 100%);overflow:hidden}
+.dx-hero .wrap{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:40px 64px;align-items:center}
+.eyebrow{display:flex;align-items:center;gap:10px;font-size:var(--fs-sm);font-weight:700;color:var(--p);margin-bottom:14px}
+.dx-hero h1{font-size:clamp(2rem,1.3rem + 2.8vw,3.25rem);line-height:1.3;margin-bottom:18px;text-wrap:balance}
+html[lang="en"] .dx-hero h1{line-height:1.1;letter-spacing:-.025em}
+.dx-hero .lead{font-size:var(--fs-lg);color:var(--m);max-width:36em}
+html[lang="en"] .dx-hero .lead{line-height:1.6}
+.dx-mark{width:clamp(150px,20vw,250px);height:auto;color:var(--t)}
+.dx-mark rect{fill:none;stroke:currentColor;stroke-width:1.8}
+.dx-mark .c{fill:currentColor;stroke:none}
+/* The Iris card: one tap to Iris for a principal who came for it */
+.iris-card{display:grid;grid-template-columns:52px minmax(0,1fr);gap:4px 16px;align-items:center;margin-top:30px;max-width:620px;background:var(--s);border:1.5px solid color-mix(in srgb,var(--p) 40%,var(--b));border-radius:var(--r-xl);padding:20px 22px;box-shadow:var(--shadow)}
+.iris-card img{width:52px;height:52px;border-radius:50%;grid-row:span 2}
+.iris-card h2{font-size:var(--fs-lg);line-height:1.4;margin:0}
+.iris-card h2 span{font-weight:400;color:var(--m)}
+.iris-card p{font-size:var(--fs-sm);color:var(--m)}
+.iris-card .cta{grid-column:1/-1;margin-top:14px;gap:10px}
+.iris-card .note{grid-column:1/-1;font-size:var(--fs-xs);margin-top:8px}
+.go{color:var(--p);font-weight:700;font-size:var(--fs-sm);display:inline-flex;align-items:center;gap:6px;min-height:46px;padding:0 6px;text-decoration:none}
+.go:hover{text-decoration:underline}
+.go svg.i{transform:rotate(90deg)}
+
+/* Home: why DataX — two paragraphs and four values */
+.prose{max-width:46em;margin-bottom:40px}
+.prose p{font-size:var(--fs-lg);color:var(--m);margin-bottom:16px}
+.prose strong{color:var(--t)}
+.vals{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.vals .card{box-shadow:none}
+.vals .dot{display:block;width:14px;height:14px;background:var(--p);border-radius:2px;margin-bottom:14px}
+
+/* Home: the zoom — the DataX grid, Iris's square lights up, one dive into it.
+   Static without JS or with reduced motion; tall and sticky only when both allow it. */
+.zoom{text-align:center;overflow:hidden}
+.zcap{padding:0 16px 32px}
+.zcap h2{font-size:var(--fs-h2-home);line-height:1.3;margin-bottom:6px}
+.zcap p{color:var(--m);font-size:var(--fs-lg)}
+.zgw{width:min(46vmin,300px);margin:0 auto;transform-origin:50% 87%}
+.zg{display:block;width:100%;height:auto;color:var(--t)}
+.zg rect{fill:none;stroke:currentColor;stroke-width:1.8}
+.zg .c{fill:currentColor;stroke:none}
+.zg .zi{fill:var(--p);stroke:none}
+@media (prefers-reduced-motion:no-preference){
+ .js .zoom{height:170vh;padding:0;overflow:visible}
+ .js .zs{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;padding-top:68px}
+ .js .zg .zi{opacity:0}
+ .dx-mark .c{animation:dx-in .7s ease-out .15s both}
+}
+@keyframes dx-in{from{opacity:0}}
+
+/* Home: the Iris band — same colour as Iris's square, so the zoom lands on it */
+.iris{background:var(--p);color:var(--on-p);text-align:center;padding:88px 0}
+.iris img.logo{width:72px;height:72px;border-radius:50%;margin:0 auto 18px;display:block;box-shadow:0 0 0 4px color-mix(in srgb,var(--on-p) 25%,transparent)}
+.iris .kicker{color:inherit;opacity:.85;font-size:var(--fs-sm)}
+.iris h2{font-size:var(--fs-display);line-height:1.25;margin:6px auto 18px;max-width:16em;text-wrap:balance}
+html[lang="en"] .iris h2{line-height:1.08;letter-spacing:-.025em}
+.iris .lead{font-size:var(--fs-lg);max-width:40em;margin:0 auto 30px;color:color-mix(in srgb,var(--on-p) 86%,var(--p))}
+.iris .cta{justify-content:center}
+.bw{background:var(--on-p);color:var(--p)}.bw:hover{background:color-mix(in srgb,var(--on-p) 90%,var(--p))}
+.bow{border-color:color-mix(in srgb,var(--on-p) 55%,transparent);color:var(--on-p);background:transparent}.bow:hover{background:color-mix(in srgb,var(--on-p) 10%,transparent)}
+.iris .h-meta{justify-content:center;color:inherit}
+.iris .h-meta svg.i,.iris .h-meta a,.iris .h-meta bdi{color:inherit}
+
+/* Home: features list (inside Iris's section) */
+.today{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,2fr);gap:32px 48px;align-items:center;margin-bottom:56px}
+.today h3{font-size:var(--fs-h2);line-height:1.35;margin-bottom:12px}
+.today p{color:var(--m)}
+.feats{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.feats .card h3{line-height:1.5}
 
 /* The product, shown big: a real screenshot in a quiet frame */
-.h-shot{position:relative;margin:56px auto 0;max-width:1140px}
 .frame{background:var(--s);border:1px solid var(--b);border-radius:var(--r-xl);padding:8px;box-shadow:var(--sh-lg)}
 .frame img{display:block;width:100%;height:auto;border-radius:calc(var(--r-xl) - 8px);background:#F6F5F1}
-.h-shot figcaption{text-align:center;font-size:var(--fs-xs);color:var(--m);padding:14px 16px 0}
-.h-hero + section{padding-top:96px}
+.h-meta{display:flex;flex-wrap:wrap;gap:6px 22px;margin-top:22px;font-size:var(--fs-sm);color:var(--m);list-style:none}
+.h-meta li{display:inline-flex;align-items:center;gap:7px}
+.h-meta svg.i{font-size:1.1em}
+.h-meta a{font-weight:700;text-decoration:none}
+.h-meta a:hover{text-decoration:underline}
+.h-meta bdi{font-weight:400}
 
 /* Home: section heads */
 .h-head{max-width:720px;margin-bottom:48px}
@@ -135,18 +192,6 @@ html[lang="en"] .h-hero .lead{line-height:1.6}
 html[lang="en"] .h-head h2{line-height:1.15;letter-spacing:-.02em}
 .h-head .sub{margin-bottom:0;font-size:var(--fs-lg)}
 
-/* Home: what Iris does — three groups of two */
-.groups{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
-.group{background:var(--s);border:1px solid var(--b);border-radius:var(--r-xl);overflow:hidden;box-shadow:var(--sh-sm);display:flex;flex-direction:column}
-.group .pic{background:var(--s2);border-bottom:1px solid var(--b);padding:20px 20px 0;overflow:hidden}
-.group .pic img{display:block;width:100%;height:auto;border-radius:10px 10px 0 0;border:1px solid var(--b);border-bottom:0;background:#F6F5F1}
-.group h3.gt{font-size:var(--fs-xs);font-weight:700;color:var(--p);padding:22px 26px 0;margin:0}
-.group ul{list-style:none;padding:6px 26px 22px}
-.group li{display:grid;grid-template-columns:24px 1fr;column-gap:12px;padding:16px 0;border-bottom:1px solid var(--b)}
-.group li:last-child{border-bottom:0}
-.group li svg.i{grid-row:span 2;font-size:22px;color:var(--p);margin-top:3px}
-.group h4{font-size:var(--fs-h3);line-height:1.5}
-.group li p{font-size:var(--fs-sm);color:var(--m)}
 .aside{margin-top:28px;font-size:var(--fs-sm);color:var(--m);text-align:center}
 .aside a{font-weight:700}
 
@@ -350,7 +395,8 @@ html[lang="en"] body{line-height:1.6}
  .store{gap:22px}
  .perks{padding:20px 0 0;border-inline-start:0;border-top:1px solid var(--b)}
  .grid,.contact{grid-template-columns:1fr 1fr}
- .groups{grid-template-columns:1fr;max-width:640px;margin-inline:auto}
+ .vals,.feats{grid-template-columns:1fr 1fr}
+ .today{grid-template-columns:1fr}
  .pillars{grid-template-columns:1fr 1fr}
  .steps{grid-template-columns:1fr 1fr;row-gap:28px}
  .chap-body{grid-template-columns:1fr;gap:16px}
@@ -361,16 +407,23 @@ html[lang="en"] body{line-height:1.6}
  section{padding:56px 0}
  .page-head{padding:40px 0 8px}
  .grid,.contact,.price,.files{grid-template-columns:1fr}
- .h-hero{padding-top:44px}
- .h-hero .cta .btn{flex:1 1 100%}
- .h-shot{margin-top:40px}
+ .dx-hero{padding:20px 0 48px}
+ .dx-hero .wrap{grid-template-columns:1fr;gap:0;position:relative}
+ .eyebrow{min-height:44px;margin-bottom:8px}
+ .dx-mark{position:absolute;top:0;inset-inline-end:16px;width:44px}
+ .dx-hero h1{font-size:1.75rem;margin-bottom:12px}
+ .dx-hero .lead{font-size:1rem;line-height:1.65}
+ html[lang="en"] .dx-hero .lead{line-height:1.55}
+ .iris-card{margin-top:18px;padding:14px 16px;grid-template-columns:44px minmax(0,1fr)}
+ .iris-card img{width:44px;height:44px}
+ .iris-card .cta .bp{flex:1 1 100%}
+ .go{flex:1 1 100%;justify-content:center;min-height:40px}
+ .vals,.feats{grid-template-columns:1fr}
+ .iris{padding:64px 0}
+ .iris .cta .btn{flex:1 1 100%}
  .frame{padding:5px;border-radius:var(--r-lg)}
  .frame img{border-radius:calc(var(--r-lg) - 5px)}
- .h-hero + section{padding-top:64px}
  .h-head{margin-bottom:32px}
- .group .pic{padding:14px 14px 0}
- .group h3.gt{padding:18px 20px 0}
- .group ul{padding:4px 20px 16px}
  .start{grid-template-columns:1fr;gap:28px}
  .start li{padding-top:0;padding-inline-start:64px;min-height:44px}
  .start li:not(:last-child)::after{top:52px;bottom:-24px;inset-inline-start:22px;inset-inline-end:auto;width:1px;height:auto}
@@ -380,10 +433,11 @@ html[lang="en"] body{line-height:1.6}
  .final .btn{flex:1 1 100%}
  .toc ol{columns:1}
  .chap h2{font-size:20px}
- .grid .card{display:grid;grid-template-columns:44px 1fr;column-gap:14px;padding:18px}
- .grid .card .ic{grid-row:span 2;width:44px;height:44px;margin:0;font-size:20px}
- .grid .card h3{margin-bottom:2px}
+ .grid .card,.feats .card{display:grid;grid-template-columns:44px 1fr;column-gap:14px;padding:18px}
+ .grid .card .ic,.feats .card .ic{grid-row:span 2;width:44px;height:44px;margin:0;font-size:20px}
+ .grid .card h3,.feats .card h3{margin-bottom:2px}
  .trial .btn,.quote .btn{flex:1 1 100%}
  .store{padding:24px 20px}
 }
 @media (max-width:420px){.steps{grid-template-columns:1fr}}
+@media (max-width:400px){.brand{font-size:19px;gap:8px}.brand .bm{width:26px;height:26px}.hdr-end{gap:6px}.lang-switch{padding:0 10px}}
