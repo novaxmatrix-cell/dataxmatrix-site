@@ -5,7 +5,8 @@
 //   <!--meta {"title": "...", "description": "...", "nav": "download"} -->
 // and may use {{TOKENS}} (see `tokens` below). The result is wrapped in src/layout.html.
 // In Arabic pages, root-relative links (href="/download/") are rewritten to /ar/… at build time.
-// Release info comes from data/releases.json (newest first), the video guide from data/guide.json.
+// Release info comes from data/releases.json (newest first), the video guide from data/guide.json (YouTube IDs; the old
+// self-hosted mp4/webp files under src/assets/guide/ are no longer referenced by any page).
 
 import fs from 'node:fs';
 import path from 'node:path';
@@ -48,7 +49,7 @@ const STR = {
     familyUrl: 'https://novaxmatrix.com/', family: 'DataX Matrix is part of NovaX Matrix',
     fonts: ['IBMPlexSans-Regular', 'IBMPlexSans-Bold'],
     storeAlt: 'Download from the Microsoft Store', storeLink: 'Iris on the Microsoft Store', youtubeLink: 'NovaX Matrix on YouTube',
-    videoAria: 'Video: ', tocAria: 'Guide contents',
+    videoAria: 'Video: ', tocAria: 'Guide contents', watch: 'Play the video (on YouTube)', noVideo: 'Written steps, no video',
   },
   ar: {
     dir: 'rtl', ogLocale: 'ar_AR', ogImage: 'og.png', switchLabel: 'العربية',
@@ -62,7 +63,7 @@ const STR = {
     familyUrl: 'https://novaxmatrix.com/ar/', family: '<bdi dir="ltr">DataX Matrix</bdi> جزء من <bdi dir="ltr">NovaX Matrix</bdi>',
     fonts: ['IBMPlexSansArabic-Regular', 'IBMPlexSansArabic-Bold'],
     storeAlt: 'التنزيل من Microsoft Store', storeLink: 'Iris على Microsoft Store', youtubeLink: 'قناة <bdi dir="ltr">NovaX Matrix</bdi> على YouTube',
-    videoAria: 'فيديو: ', tocAria: 'محتويات الدليل',
+    videoAria: 'فيديو: ', tocAria: 'محتويات الدليل', watch: 'شغّل الفيديو (على YouTube)', noVideo: 'خطوات مكتوبة، بلا فيديو',
   },
 };
 const NAV = [['home', '/'], ['download', '/download/'], ['activation', '/activation/'], ['guide', '/guide/'], ['forms', '/forms/'], ['contact', '/contact/']];
@@ -128,20 +129,37 @@ const storeBadge = (lang) => `<a class="msb" href="${esc(STORE_URL[lang])}" rel=
   `<img class="msb-${v}" src="/assets/img/store/ms-store-${lang}-${v}.svg" width="161" height="44" alt="${v === 'dark' ? STR[lang].storeAlt : ''}">`).join('')}</a>`;
 
 // ---------- guide (data/guide.json → /guide/, /ar/guide/ and the Arabic chapter pages) ----------
-const guide = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/guide.json'), 'utf8'));
-for (const c of guide) {
-  for (const k of ['id', 'title', 'intro', 'video', 'steps', 'title_en', 'intro_en', 'steps_en']) if (c[k] == null) fail(`guide chapter ${c.id ?? '?'} is missing "${k}"`);
-  for (const ext of ['mp4', 'webp']) {
-    if (!fs.existsSync(path.join(SRC, `assets/guide/${c.video}.${ext}`))) fail(`guide chapter ${c.id}: assets/guide/${c.video}.${ext} not found`);
-  }
+// Each chapter has a YouTube ID (`youtube`) or none (written steps only). `full` is the all-in-one video shown at the top of
+// the guide index. Thumbnails are local WebP files, src/assets/guide/thumbs/<id>.webp, so nothing loads from Google until the
+// visitor presses play: the thumbnail is a plain link to YouTube, and site.js swaps in the youtube-nocookie.com player on click.
+const guideData = JSON.parse(fs.readFileSync(path.join(ROOT, 'data/guide.json'), 'utf8'));
+const guide = guideData.chapters;
+const YT_ID = /^[A-Za-z0-9_-]{11}$/;
+function checkVideo(where, id) {
+  if (!YT_ID.test(id)) fail(`${where}: bad YouTube ID "${id}"`);
+  if (!fs.existsSync(path.join(SRC, `assets/guide/thumbs/${id}.webp`))) fail(`${where}: assets/guide/thumbs/${id}.webp not found`);
 }
-const guideBody = (c, lang) => `<div class="chap-body">
-  <div class="vid"><video controls preload="none" playsinline width="1920" height="1080" data-poster="/assets/guide/${esc(c.video)}.webp" aria-label="${STR[lang].videoAria}${esc(pick(c, 'title', lang))}"><source src="/assets/guide/${esc(c.video)}.mp4" type="video/mp4"></video></div>
+for (const k of ['youtube', 'title', 'intro', 'title_en', 'intro_en']) if (guideData.full?.[k] == null) fail(`guide.json: "full" is missing "${k}"`);
+checkVideo('guide full video', guideData.full.youtube);
+for (const c of guide) {
+  for (const k of ['id', 'title', 'intro', 'steps', 'title_en', 'intro_en', 'steps_en']) if (c[k] == null) fail(`guide chapter ${c.id ?? '?'} is missing "${k}"`);
+  if (c.youtube != null) checkVideo(`guide chapter ${c.id}`, c.youtube);
+}
+// Click-to-load player: local thumbnail + play button, linking to the video on YouTube (that is all there is without JS).
+const ytPlayer = (id, title, lang, w = 640) => `<div class="vid yt" data-yt="${esc(id)}" data-title="${esc(title)}">
+   <a href="https://www.youtube.com/watch?v=${esc(id)}" rel="noopener"><img src="/assets/guide/thumbs/${esc(id)}.webp" width="${w}" height="${w * 9 / 16}" alt="" loading="lazy"><span class="play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></span><span class="sr">${esc(STR[lang].watch)}: ${esc(title)}</span></a>
+  </div>`;
+const guideBody = (c, lang) => `<div class="chap-body${c.youtube ? '' : ' text'}">
+  ${c.youtube ? ytPlayer(c.youtube, pick(c, 'title', lang), lang) : ''}
   <ol class="howto">${pick(c, 'steps', lang).map((s) => `<li>${text(s, lang)}</li>`).join('')}</ol>
  </div>`;
-const guideToc = (lang) => `<nav class="toc" aria-label="${STR[lang].tocAria}"><ol>${guide.map((c) => `<li><a href="#${esc(c.id)}">${esc(pick(c, 'title', lang))}</a></li>`).join('')}</ol></nav>`;
+const guideFull = (lang) => `<div class="full-vid">
+ ${ytPlayer(guideData.full.youtube, pick(guideData.full, 'title', lang), lang, 960)}
+ <p class="sub"><b>${esc(pick(guideData.full, 'title', lang))}</b> · ${esc(pick(guideData.full, 'intro', lang))}</p>
+</div>`;
+const guideToc = (lang) => `<nav class="toc" aria-label="${STR[lang].tocAria}"><ol start="0">${guide.map((c) => `<li><a href="#${esc(c.id)}">${esc(pick(c, 'title', lang))}</a></li>`).join('')}</ol></nav>`;
 const guideChapters = (lang) => guide.map((c, i) => `<div class="chap" id="${esc(c.id)}">
- <h2><span class="num">${i + 1}</span>${esc(pick(c, 'title', lang))}</h2>
+ <h2><span class="num">${i}</span>${esc(pick(c, 'title', lang))}</h2>
  <p class="sub">${esc(pick(c, 'intro', lang))}</p>
  ${guideBody(c, lang)}
 </div>`).join('\n');
@@ -156,6 +174,7 @@ function tokensFor(lang) {
     YOUTUBE_URL: () => esc(YOUTUBE_URL),
     REQUIREMENTS: () => reqList(lang),
     GUIDE_TOC: () => guideToc(lang),
+    GUIDE_FULL: () => guideFull(lang),
     GUIDE_CHAPTERS: () => guideChapters(lang),
   };
   for (const [k, msg] of Object.entries(WA_TEXT[lang])) t[k] = () => esc(wa(msg));

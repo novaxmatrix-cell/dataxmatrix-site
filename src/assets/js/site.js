@@ -40,6 +40,25 @@
     Array.prototype.forEach.call(vids, poster);
   }
 
+  // Guide videos: a local thumbnail that links to the video on YouTube. On click, swap in the youtube-nocookie.com
+  // player, so nothing from Google loads before the visitor asks for it.
+  Array.prototype.forEach.call(document.querySelectorAll('.yt[data-yt]'), function (box) {
+    var a = box.querySelector('a');
+    if (!a) return;
+    a.addEventListener('click', function (e) {
+      e.preventDefault();
+      var f = document.createElement('iframe');
+      f.src = 'https://www.youtube-nocookie.com/embed/' + box.getAttribute('data-yt') + '?autoplay=1&rel=0&hl=' + (root.lang || 'ar');
+      f.title = box.getAttribute('data-title') || '';
+      f.allow = 'autoplay; encrypted-media; picture-in-picture; fullscreen';
+      f.setAttribute('allowfullscreen', '');
+      f.setAttribute('referrerpolicy', 'strict-origin-when-cross-origin');
+      box.innerHTML = '';
+      box.appendChild(f);
+      f.focus();
+    });
+  });
+
   // Scroll reveal (CSS only animates .rv when prefers-reduced-motion allows it).
   var rv = document.querySelectorAll('.rv');
   if (rv.length && 'IntersectionObserver' in window) {

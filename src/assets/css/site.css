@@ -349,6 +349,19 @@ nav.toc{display:block;background:var(--s);border:1px solid var(--b);border-radiu
 .chap .sub{margin-bottom:16px}
 .chap-body{display:grid;grid-template-columns:1.4fr 1fr;gap:28px;align-items:start}
 .vid video{display:block;width:100%;height:auto;aspect-ratio:16/9;background:var(--b);border:1px solid var(--b);border-radius:var(--r-lg);box-shadow:var(--shadow)}
+/* Click-to-load YouTube player: local thumbnail + play button (a plain link without JS), then the iframe takes its place. */
+.yt a{position:relative;display:block;aspect-ratio:16/9;background:#0A1428;border:1px solid var(--b);border-radius:var(--r-lg);overflow:hidden;box-shadow:var(--shadow)}
+.yt img{display:block;width:100%;height:100%;object-fit:cover;transition:transform .3s}
+.yt a:hover img{transform:scale(1.02)}
+.yt .play{position:absolute;inset:0;margin:auto;width:64px;height:64px;border-radius:50%;background:var(--p);color:var(--on-p);display:flex;align-items:center;justify-content:center;box-shadow:0 8px 24px -6px rgba(0,0,0,.5);transition:transform .2s}
+.yt .play svg{width:30px;height:30px;margin-inline-start:3px}
+.yt a:hover .play,.yt a:focus-visible .play{transform:scale(1.08)}
+.yt iframe{display:block;width:100%;height:auto;aspect-ratio:16/9;border:0;border-radius:var(--r-lg);box-shadow:var(--shadow);background:#000}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.full-vid{max-width:860px;margin:0 auto 12px}
+.full-vid .sub{margin:14px 0 0;text-align:center}
+.full-vid .play{width:80px;height:80px}.full-vid .play svg{width:38px;height:38px}
+.chap-body.text{grid-template-columns:1fr}
 .howto{margin-inline-start:22px;font-size:var(--fs-sm)}
 .howto li{margin-bottom:10px;padding-inline-start:4px}
 .howto li::marker{color:var(--p);font-weight:700}

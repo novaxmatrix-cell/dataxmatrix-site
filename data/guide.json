@@ -1,165 +1,271 @@
-[
-  {
-    "id": "start",
-    "title": "البداية: العام الدراسي، الغرف، الشعب",
-    "intro": "جهّز المدرسة للعام الجديد قبل استيراد الطلاب.",
-    "video": "iris-guide-01-getting-started",
-    "page": "/guide/getting-started/",
-    "steps": [
-      "افتح شاشة «العام الدراسي والتقويم»، واضغط زر «إنشاء العام الدراسي».",
-      "تُضاف العطل الرسمية تلقائياً، ويمكنك تعديلها.",
-      "في «الصفوف والمباحث» ثم «الغرف»، اكتب عدد الغرف الصفية، ثم اضغط زر «إضافة».",
-      "في «الشعب والتشكيلات»، اكتب عدد شعب كل صف.",
-      "أصبحت المدرسة جاهزة لاستيراد الطلاب."
-    ],
-    "title_en": "Getting started: school year, rooms, sections",
-    "intro_en": "Set up the school for the new year before importing students.",
-    "steps_en": [
-      "Open the «العام الدراسي والتقويم» (school year and calendar) screen and press «إنشاء العام الدراسي» (create school year).",
-      "Official holidays are added automatically, and you can edit them.",
-      "In «الصفوف والمباحث» (grades and subjects), then «الغرف» (rooms), type the number of classrooms and press «إضافة» (add).",
-      "In «الشعب والتشكيلات» (sections), type the number of sections for each grade.",
-      "The school is now ready to import students."
-    ]
+{
+  "full": {
+    "youtube": "fIFeZcclsCk",
+    "title": "دليل Iris الكامل: إدارة المدرسة من البداية إلى النسخ الاحتياطي",
+    "intro": "كل الدروس في فيديو واحد، أو اختر الدرس الذي تحتاجه أدناه.",
+    "title_en": "The complete Iris guide: running the school from the first day to the backup",
+    "intro_en": "Every lesson in one video (in Arabic), or pick the lesson you need below."
   },
-  {
-    "id": "import",
-    "title": "استيراد الطلاب من نظام الوزارة",
-    "intro": "لا حاجة إلى إدخال الطلاب واحداً واحداً.",
-    "video": "iris-guide-02-import",
-    "page": "/guide/eschool-import/",
-    "steps": [
-      "صدّر قائمة الطلاب من نظام الوزارة إلى ملف إكسل.",
-      "في شاشة «الطلاب»، اضغط زر الاستيراد، ثم اختر الملف.",
-      "يتعرّف Iris على الأعمدة وحده.",
-      "اضغط زر «معاينة» لتراجع الطلاب قبل الحفظ.",
-      "اضغط زر «استيراد»، فتُنشأ الشعب ويوزَّع الطلاب عليها.",
-      "تؤخذ نسخة احتياطية تلقائياً قبل الاستيراد."
-    ],
-    "title_en": "Importing students from the Ministry system",
-    "intro_en": "No need to enter students one by one.",
-    "steps_en": [
-      "Export the student list from the Ministry system to an Excel file.",
-      "On the «الطلاب» (students) screen, press the import button and choose the file.",
-      "Iris recognizes the columns by itself.",
-      "Press «معاينة» (preview) to review the students before saving.",
-      "Press «استيراد» (import): the sections are created and students are placed in them.",
-      "A backup is taken automatically before the import."
-    ]
-  },
-  {
-    "id": "rooms",
-    "title": "الشعب والغرف ومربّو الصفوف",
-    "intro": "بعد الاستيراد، وزّع الغرف ومربّي الصفوف.",
-    "video": "iris-guide-03-sections-rooms",
-    "steps": [
-      "افتح شاشة «الصفوف والمباحث»، ثم «الشعب والتشكيلات».",
-      "اضغط زر «وزّع الغرف تلقائياً».",
-      "تُوضع شعب الصف الواحد في غرف متتالية. راجعها ثم احفظ.",
-      "في «مربو الصفوف» يقترح Iris لكل شعبة المعلم صاحب أكثر الحصص فيها.",
-      "اضغط زر «اعتماد كل المقترحات»، ثم اطبع القائمة."
-    ],
-    "title_en": "Sections, rooms and homeroom teachers",
-    "intro_en": "After the import, assign rooms and homeroom teachers.",
-    "steps_en": [
-      "Open «الصفوف والمباحث» (grades and subjects), then «الشعب والتشكيلات» (sections).",
-      "Press «وزّع الغرف تلقائياً» (assign rooms automatically).",
-      "Sections of the same grade are placed in neighboring rooms. Review them, then save.",
-      "In «مربو الصفوف» (homeroom teachers), Iris suggests for each section the teacher with the most lessons in it.",
-      "Press «اعتماد كل المقترحات» (accept all suggestions), then print the list."
-    ]
-  },
-  {
-    "id": "attendance",
-    "title": "الحضور والغياب",
-    "intro": "تسجيل الغياب اليومي يأخذ أقل من دقيقة.",
-    "video": "iris-guide-04-attendance",
-    "page": "/guide/attendance/",
-    "steps": [
-      "افتح شاشة «الحضور والغياب» ثم «الدفتر اليومي»، واختر الشعبة.",
-      "الجميع حاضرون، فأزل العلامة عن الغائب فقط.",
-      "اختر «بعذر» أو «متأخر» عند الحاجة.",
-      "يُحفظ كل تغيير فوراً، دون زر حفظ.",
-      "في «كشف الغياب اليومي» يظهر غياب المدرسة كلها.",
-      "اضغط زر «طباعة»، فيُطبع الكشف على ترويسة المدرسة."
-    ],
-    "title_en": "Attendance",
-    "intro_en": "Taking daily attendance takes less than a minute.",
-    "steps_en": [
-      "Open «الحضور والغياب» (attendance), then «الدفتر اليومي» (daily register), and choose the section.",
-      "Everyone starts as present, so untick only the absent students.",
-      "Choose «بعذر» (excused) or «متأخر» (late) when needed.",
-      "Every change is saved immediately, with no save button.",
-      "«كشف الغياب اليومي» (daily absence report) shows absences for the whole school.",
-      "Press «طباعة» (print) to print the report on the school letterhead."
-    ]
-  },
-  {
-    "id": "substitutes",
-    "title": "الإجازات والحصص البديلة",
-    "intro": "غاب معلّم اليوم؟ سجّل إجازته ووزّع حصصه.",
-    "video": "iris-guide-05-leave-substitutes",
-    "steps": [
-      "من شاشة «الإجازات والبدلاء»، أضف إجازة جديدة.",
-      "اختر المعلم ونوع الإجازة وتاريخها، ثم احفظ.",
-      "في «الحصص البديلة»، اضغط زر «الحصص من الجدول».",
-      "تظهر حصص المعلم الغائب لهذا اليوم.",
-      "اختر لكل حصة معلماً بديلاً من القائمة.",
-      "اضغط «طباعة الحصص البديلة» لطباعة الجدول للمعلمين."
-    ],
-    "title_en": "Leave and substitute lessons",
-    "intro_en": "A teacher is absent today? Record the leave and cover the lessons.",
-    "steps_en": [
-      "On the «الإجازات والبدلاء» (leave and substitutes) screen, add a new leave.",
-      "Choose the teacher, the type of leave and its date, then save.",
-      "In «الحصص البديلة» (substitute lessons), press «الحصص من الجدول» (lessons from the timetable).",
-      "The absent teacher’s lessons for that day appear.",
-      "Choose a substitute teacher for each lesson from the list.",
-      "Press «طباعة الحصص البديلة» (print substitute lessons) to print the schedule for teachers."
-    ]
-  },
-  {
-    "id": "backup",
-    "title": "النسخ الاحتياطي",
-    "intro": "بيانات المدرسة ثمينة، فاحفظها على ذاكرة USB.",
-    "video": "iris-guide-06-backup",
-    "steps": [
-      "صِل الذاكرة بالجهاز، ثم افتح شاشة «النسخ الاحتياطي».",
-      "سجّل الذاكرة مرة واحدة من زر «تسجيل وحدة».",
-      "بعدها تُنسخ البيانات إليها تلقائياً، وتُفحص كل نسخة.",
-      "لنسخة فورية، اضغط زر «نسخ احتياطي الآن».",
-      "يمكنك تسجيل وحدة ثانية للتبديل بينهما."
-    ],
-    "title_en": "Backup",
-    "intro_en": "School data is valuable, so keep a copy on a USB drive.",
-    "steps_en": [
-      "Plug the USB drive into the computer, then open the «النسخ الاحتياطي» (backup) screen.",
-      "Register the drive once with «تسجيل وحدة» (register drive).",
-      "From then on, data is copied to it automatically, and every copy is checked.",
-      "For an immediate copy, press «نسخ احتياطي الآن» (back up now).",
-      "You can register a second drive and alternate between the two."
-    ]
-  },
-  {
-    "id": "activation",
-    "title": "التفعيل",
-    "intro": "عند أول تشغيل، يطلب Iris رمز التفعيل.",
-    "video": "iris-guide-07-activation",
-    "steps": [
-      "ينسخ الفنّي «رمز الطلب» الظاهر على الشاشة.",
-      "ثم يلصق رمز التفعيل، ويضغط زر «تفعيل».",
-      "بعدها يختار مدير المدرسة كلمة المرور بنفسه.",
-      "اطبع مفتاح الاسترداد واحفظه في مكان آمن، فلا يظهر مرة أخرى.",
-      "أخيراً، اكتب اسم المدرسة، فتُبنى الترويسة وحدها."
-    ],
-    "title_en": "Activation",
-    "intro_en": "On first launch, Iris asks for an activation code.",
-    "steps_en": [
-      "The technician copies the «رمز الطلب» (request code) shown on screen.",
-      "Then pastes the activation code and presses «تفعيل» (activate).",
-      "Next, the principal chooses the password personally.",
-      "Print the recovery key and keep it somewhere safe: it is shown only once.",
-      "Finally, type the school name, and the letterhead is built automatically."
-    ]
-  }
-]
+  "chapters": [
+    {
+      "id": "intro",
+      "youtube": "yJIFKpKabv4",
+      "title": "Iris في دقيقة: إدارة المدرسة بأقل جهد",
+      "intro": "جولة سريعة على البرنامج قبل الدروس.",
+      "steps": [
+        "شاشة «اليوم»: شريط اليوم الدراسي والحصة الحالية ونسبة الحضور، وما يحتاج انتباهك الآن.",
+        "الاستيراد من نظام الوزارة بدل إدخال الطلاب واحداً واحداً.",
+        "الغياب، الحصص البديلة، المناوبة، وكل ورقة رسمية على ترويسة المدرسة.",
+        "يعمل بدون إنترنت، وبيانات المدرسة تبقى على جهازها مع نسخ احتياطي تلقائي."
+      ],
+      "title_en": "Iris in a minute: running the school with less effort",
+      "intro_en": "A quick tour of the program before the lessons.",
+      "steps_en": [
+        "The «اليوم» (Today) screen: the school-day bar, the current lesson, the attendance rate, and what needs your attention now.",
+        "Import from the Ministry system instead of entering students one by one.",
+        "Absences, substitute lessons, the duty rota, and every official paper on the school letterhead.",
+        "Works offline, and the school’s data stays on its computer with an automatic backup."
+      ]
+    },
+    {
+      "id": "start",
+      "youtube": "PGIBLtX04w4",
+      "title": "البداية: كلمة المرور، المدرسة، الترويسة",
+      "intro": "أول تشغيل بعد التفعيل: ثلاث خطوات ثم تبدأ العمل.",
+      "page": "/guide/getting-started/",
+      "steps": [
+        "عند أول تشغيل يختار مدير المدرسة كلمة المرور بنفسه.",
+        "اطبع مفتاح الاسترداد واحفظه في مكان آمن، فلا يظهر مرة أخرى.",
+        "اكتب اسم المدرسة، فتُبنى الترويسة وحدها.",
+        "راجع الترويسة وعدّل ما تشاء، فهي التي تظهر على كل الأوراق الرسمية.",
+        "ثم أنشئ العام الدراسي من «العام الدراسي والتقويم»، فتُضاف العطل الرسمية تلقائياً."
+      ],
+      "title_en": "Getting started: password, school, letterhead",
+      "intro_en": "First launch after activation: three steps and you are ready to work.",
+      "steps_en": [
+        "On first launch, the principal chooses the password personally.",
+        "Print the recovery key and keep it somewhere safe: it is shown only once.",
+        "Type the school name, and the letterhead is built automatically.",
+        "Review the letterhead and edit it as you like: it appears on every official paper.",
+        "Then create the school year from «العام الدراسي والتقويم» (school year and calendar); official holidays are added automatically."
+      ]
+    },
+    {
+      "id": "import",
+      "youtube": "Nmhqc-7Gijg",
+      "title": "الاستيراد من نظام الوزارة",
+      "intro": "لا حاجة إلى إدخال الطلاب واحداً واحداً.",
+      "page": "/guide/eschool-import/",
+      "steps": [
+        "صدّر قائمة الطلاب من نظام الوزارة إلى ملف إكسل.",
+        "في شاشة «الطلاب»، اضغط زر الاستيراد، ثم اختر الملف.",
+        "يتعرّف Iris على الأعمدة وحده، حتى لو تغيّر ترتيبها.",
+        "اضغط زر «معاينة» لتراجع الطلاب قبل الحفظ. ويمكنك اختيار ملفات عدة شعب معاً بمعاينة واحدة.",
+        "اضغط زر «استيراد»، فتُنشأ الشعب ويوزَّع الطلاب عليها.",
+        "تؤخذ نسخة احتياطية تلقائياً قبل الاستيراد."
+      ],
+      "title_en": "Importing from the Ministry system",
+      "intro_en": "No need to enter students one by one.",
+      "steps_en": [
+        "Export the student list from the Ministry system to an Excel file.",
+        "On the «الطلاب» (students) screen, press the import button and choose the file.",
+        "Iris recognizes the columns by itself, even if their order changed.",
+        "Press «معاينة» (preview) to review the students before saving. You can pick the files of several sections at once, with one preview.",
+        "Press «استيراد» (import): the sections are created and students are placed in them.",
+        "A backup is taken automatically before the import."
+      ]
+    },
+    {
+      "id": "rooms",
+      "youtube": "PxWOCQVxi1M",
+      "title": "الشعب والغرف ومربّو الصفوف",
+      "intro": "بعد الاستيراد، وزّع الغرف ومربّي الصفوف.",
+      "steps": [
+        "في «الصفوف والمباحث» ثم «الغرف»، اكتب عدد الغرف الصفية واضغط زر «إضافة».",
+        "افتح «الشعب والتشكيلات»، واضغط زر «وزّع الغرف تلقائياً».",
+        "تُوضع شعب الصف الواحد في غرف متتالية. راجعها ثم احفظ.",
+        "في «مربو الصفوف» يقترح Iris لكل شعبة المعلم صاحب أكثر الحصص فيها.",
+        "اضغط زر «اعتماد كل المقترحات»، ثم اطبع القائمة."
+      ],
+      "title_en": "Sections, rooms and homeroom teachers",
+      "intro_en": "After the import, assign rooms and homeroom teachers.",
+      "steps_en": [
+        "In «الصفوف والمباحث» (grades and subjects), then «الغرف» (rooms), type the number of classrooms and press «إضافة» (add).",
+        "Open «الشعب والتشكيلات» (sections) and press «وزّع الغرف تلقائياً» (assign rooms automatically).",
+        "Sections of the same grade are placed in neighboring rooms. Review them, then save.",
+        "In «مربو الصفوف» (homeroom teachers), Iris suggests for each section the teacher with the most lessons in it.",
+        "Press «اعتماد كل المقترحات» (accept all suggestions), then print the list."
+      ]
+    },
+    {
+      "id": "attendance",
+      "youtube": "4in9X1SnxSs",
+      "title": "الحضور والغياب",
+      "intro": "تسجيل الغياب اليومي يأخذ أقل من دقيقة.",
+      "page": "/guide/attendance/",
+      "steps": [
+        "افتح شاشة «الحضور والغياب» ثم «الدفتر اليومي»، واختر الشعبة.",
+        "الجميع حاضرون، فأزل العلامة عن الغائب فقط.",
+        "اختر «بعذر» أو «متأخر» عند الحاجة.",
+        "يُحفظ كل تغيير فوراً، دون زر حفظ.",
+        "في «كشف الغياب اليومي» يظهر غياب المدرسة كلها.",
+        "اضغط زر «طباعة»، فيُطبع الكشف على ترويسة المدرسة."
+      ],
+      "title_en": "Attendance",
+      "intro_en": "Taking daily attendance takes less than a minute.",
+      "steps_en": [
+        "Open «الحضور والغياب» (attendance), then «الدفتر اليومي» (daily register), and choose the section.",
+        "Everyone starts as present, so untick only the absent students.",
+        "Choose «بعذر» (excused) or «متأخر» (late) when needed.",
+        "Every change is saved immediately, with no save button.",
+        "«كشف الغياب اليومي» (daily absence report) shows absences for the whole school.",
+        "Press «طباعة» (print) to print the report on the school letterhead."
+      ]
+    },
+    {
+      "id": "phones",
+      "youtube": "89-CEA_oisY",
+      "title": "هواتف أولياء الأمور",
+      "intro": "رقم واحد لولي الأمر يصل إلى كل أبنائه.",
+      "steps": [
+        "افتح بطاقة الطالب من شاشة «الطلاب»، وأضف رقم هاتف ولي الأمر.",
+        "الرقم الواحد يُربط بكل أبناء ولي الأمر في المدرسة، فلا تكرّره لكل طالب.",
+        "تظهر الشعب التي تنقصها أرقام، لتكملها قبل أن تحتاج إليها."
+      ],
+      "title_en": "Parents’ phones",
+      "intro_en": "One number per parent reaches all their children.",
+      "steps_en": [
+        "Open the student’s card from the «الطلاب» (students) screen and add the parent’s phone number.",
+        "One number is linked to all of that parent’s children at the school, so you never repeat it for each student.",
+        "Sections that are missing numbers are flagged, so you can complete them before you need them."
+      ]
+    },
+    {
+      "id": "substitutes",
+      "youtube": "Nvt1CH5HmgA",
+      "title": "الإجازات والحصص البديلة",
+      "intro": "غاب معلّم اليوم؟ سجّل إجازته ووزّع حصصه.",
+      "steps": [
+        "من شاشة «الإجازات والبدلاء»، أضف إجازة جديدة.",
+        "اختر المعلم ونوع الإجازة وتاريخها، ثم احفظ.",
+        "في «الحصص البديلة»، اضغط زر «الحصص من الجدول»، فتظهر حصص المعلم الغائب لهذا اليوم.",
+        "يقترح Iris لكل حصة أفضل بديل أولاً: معلم المبحث نفسه، أو معلم يدرّس الشعبة، مع توزيع عادل للعبء.",
+        "اختر البديل لكل حصة، ثم اضغط «طباعة الحصص البديلة» لطباعة القائمة للمعلمين."
+      ],
+      "title_en": "Leave and substitute lessons",
+      "intro_en": "A teacher is absent today? Record the leave and cover the lessons.",
+      "steps_en": [
+        "On the «الإجازات والبدلاء» (leave and substitutes) screen, add a new leave.",
+        "Choose the teacher, the type of leave and its date, then save.",
+        "In «الحصص البديلة» (substitute lessons), press «الحصص من الجدول» (lessons from the timetable): the absent teacher’s lessons for that day appear.",
+        "For each lesson Iris suggests the best cover first: a teacher of the same subject, or one who teaches the section, with the load shared fairly.",
+        "Choose the cover for each lesson, then press «طباعة الحصص البديلة» (print substitute lessons) to print the list for teachers."
+      ]
+    },
+    {
+      "id": "duty",
+      "youtube": "lM65DtE6loA",
+      "title": "المناوبة",
+      "intro": "جدول مناوبة عادل، جاهز للطباعة.",
+      "steps": [
+        "افتح شاشة «المناوبة»، وأضف مواقع المناوبة (الساحة، البوابة، الممرات…).",
+        "حدّد عدد المناوبين لكل موقع، واختر أيام المناوبة.",
+        "اطلب التوزيع التلقائي، فيوزَّع المعلمون بالتساوي على الأيام والمواقع.",
+        "راجع الجدول وبدّل ما تشاء يدوياً، ثم احفظ.",
+        "اطبع كشف المناوبة على ترويسة المدرسة."
+      ],
+      "title_en": "Duty rota",
+      "intro_en": "A fair duty rota, ready to print.",
+      "steps_en": [
+        "Open the «المناوبة» (duty) screen and add the duty spots (yard, gate, corridors…).",
+        "Set how many people each spot needs, and choose the duty days.",
+        "Ask for the automatic fill: teachers are spread fairly over the days and spots.",
+        "Review the rota and swap anyone by hand, then save.",
+        "Print the duty sheet on the school letterhead."
+      ]
+    },
+    {
+      "id": "emergency",
+      "youtube": "OE--dn2LkEk",
+      "title": "خطة الطوارئ",
+      "intro": "أيام في المدرسة وأيام عن بُعد، والسجل الرسمي كما هو.",
+      "steps": [
+        "افتح «خطة الطوارئ»، وحدّد أيام الدوام في المدرسة وأيام التعلّم عن بُعد.",
+        "يعمل جدول فعلي للطوارئ بجانب الجدول الرسمي، دون المساس به.",
+        "في أيام التعلّم عن بُعد يُحتسب الجميع حاضرين تلقائياً.",
+        "عند انتهاء الطوارئ، أوقف الخطة فيعود العمل بالجدول الرسمي كما كان."
+      ],
+      "title_en": "Emergency plan",
+      "intro_en": "In-school days and distance-learning days, with the official record left as it is.",
+      "steps_en": [
+        "Open «خطة الطوارئ» (emergency plan) and set the in-school days and the distance-learning days.",
+        "An actual emergency timetable runs beside the official one, without touching it.",
+        "On distance-learning days everyone counts as present automatically.",
+        "When the emergency is over, stop the plan and work returns to the official timetable as it was."
+      ]
+    },
+    {
+      "id": "printing",
+      "youtube": "4uOYx8qJuUQ",
+      "title": "الطباعة على الترويسة",
+      "intro": "كل ورقة رسمية تخرج جاهزة بترويسة مدرستك.",
+      "steps": [
+        "تُبنى الترويسة من اسم المدرسة عند البداية، ويمكنك تعديلها في أي وقت.",
+        "من أي كشف، اضغط زر «طباعة»، فيظهر الكشف على ترويسة المدرسة.",
+        "كشف الغياب اليومي، قائمة الحصص البديلة، كشف المناوبة، وبيان الطالب: كلها تُطبع بالطريقة نفسها.",
+        "الترويسة متاحة بالعربية والإنجليزية."
+      ],
+      "title_en": "Printing on the letterhead",
+      "intro_en": "Every official paper comes out ready on your school’s letterhead.",
+      "steps_en": [
+        "The letterhead is built from the school name at the start, and you can edit it at any time.",
+        "From any report, press «طباعة» (print): the report appears on the school letterhead.",
+        "The daily absence report, the substitute lessons list, the duty sheet and the student statement are all printed the same way.",
+        "The letterhead is available in Arabic and English."
+      ]
+    },
+    {
+      "id": "backup",
+      "youtube": "0yiy_kfyOEo",
+      "title": "النسخ الاحتياطي",
+      "intro": "بيانات المدرسة ثمينة، فاحفظها على ذاكرة USB.",
+      "steps": [
+        "صِل الذاكرة بالجهاز، ثم افتح شاشة «النسخ الاحتياطي».",
+        "سجّل الذاكرة مرة واحدة من زر «تسجيل وحدة».",
+        "بعدها تُنسخ البيانات إليها تلقائياً، وتُفحص كل نسخة.",
+        "لنسخة فورية، اضغط زر «نسخ احتياطي الآن».",
+        "يمكنك تسجيل وحدة ثانية للتبديل بينهما.",
+        "ولمن يريد، نسخ اختياري إلى OneDrive: يُشفَّر الملف داخل Iris قبل أن يغادر الجهاز."
+      ],
+      "title_en": "Backup",
+      "intro_en": "School data is valuable, so keep a copy on a USB drive.",
+      "steps_en": [
+        "Plug the USB drive into the computer, then open the «النسخ الاحتياطي» (backup) screen.",
+        "Register the drive once with «تسجيل وحدة» (register drive).",
+        "From then on, data is copied to it automatically, and every copy is checked.",
+        "For an immediate copy, press «نسخ احتياطي الآن» (back up now).",
+        "You can register a second drive and alternate between the two.",
+        "If you want it, an optional backup to OneDrive: the file is encrypted inside Iris before it leaves the computer."
+      ]
+    },
+    {
+      "id": "activation",
+      "title": "التفعيل",
+      "intro": "عند أول تشغيل، يطلب Iris رمز التفعيل. خطوات مكتوبة، بلا فيديو.",
+      "steps": [
+        "عند أول تشغيل يعرض Iris «رمز الطلب»؛ انسخه وأرسله لنا على واتساب.",
+        "يصلك رمز التفعيل في اليوم نفسه؛ الصقه واضغط زر «تفعيل».",
+        "التفعيل الأول مرة واحدة وبدون إنترنت، ثم رمز تجديد كل عام دراسي.",
+        "بعد التفعيل تبدأ خطوات درس «البداية»: كلمة المرور، اسم المدرسة، الترويسة."
+      ],
+      "title_en": "Activation",
+      "intro_en": "On first launch, Iris asks for an activation code. Written steps, no video.",
+      "steps_en": [
+        "On first launch Iris shows the «رمز الطلب» (request code); copy it and send it to us on WhatsApp.",
+        "You receive the activation code the same day; paste it and press «تفعيل» (activate).",
+        "The first activation is done once, offline; then a renewal code each school year.",
+        "After activation, the «البداية» (getting started) lesson follows: password, school name, letterhead."
+      ]
+    }
+  ]
+}
