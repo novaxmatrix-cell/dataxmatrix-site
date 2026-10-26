@@ -21,7 +21,10 @@ const WHATSAPP = '972568806666';
 const LANGS = ['en', 'ar'];
 const PREFIX = { en: '', ar: '/ar' };
 // Iris is distributed only through the Microsoft Store. The direct installers are retired; data/releases.json keeps their history.
-const STORE_URL = { en: 'https://apps.microsoft.com/detail/9P5FQXQH4HF3?hl=en-us', ar: 'https://apps.microsoft.com/detail/9P5FQXQH4HF3?hl=ar-sa' };
+// The Store URL carries no parameters (no locale hint, no tracking); the Store picks the visitor's language itself.
+const STORE_URL = { en: 'https://apps.microsoft.com/detail/9P5FQXQH4HF3', ar: 'https://apps.microsoft.com/detail/9P5FQXQH4HF3' };
+// The NovaX Matrix YouTube channel (DataX Matrix is part of NovaX Matrix). No video is embedded on the site; this is a plain link.
+const YOUTUBE_URL = 'https://www.youtube.com/@NovaX-Matrix';
 
 // Old Arabic URLs that moved. The app links to /guide/<slug>/, so those must keep working.
 const REDIRECTS = {
@@ -44,7 +47,7 @@ const STR = {
     links: 'Links', contact: 'Contact us', whatsapp: 'WhatsApp', support: 'Technical support', tagline: 'For Palestinian government and private schools',
     familyUrl: 'https://novaxmatrix.com/', family: 'DataX Matrix is part of NovaX Matrix',
     fonts: ['IBMPlexSans-Regular', 'IBMPlexSans-Bold'],
-    storeAlt: 'Download from the Microsoft Store',
+    storeAlt: 'Download from the Microsoft Store', storeLink: 'Iris on the Microsoft Store', youtubeLink: 'NovaX Matrix on YouTube',
     videoAria: 'Video: ', tocAria: 'Guide contents',
   },
   ar: {
@@ -58,7 +61,7 @@ const STR = {
     links: 'روابط', contact: 'تواصل معنا', whatsapp: 'واتساب', support: 'الدعم الفني', tagline: 'للمدارس الفلسطينية الحكومية والخاصة',
     familyUrl: 'https://novaxmatrix.com/ar/', family: '<bdi dir="ltr">DataX Matrix</bdi> جزء من <bdi dir="ltr">NovaX Matrix</bdi>',
     fonts: ['IBMPlexSansArabic-Regular', 'IBMPlexSansArabic-Bold'],
-    storeAlt: 'التنزيل من Microsoft Store',
+    storeAlt: 'التنزيل من Microsoft Store', storeLink: 'Iris على Microsoft Store', youtubeLink: 'قناة <bdi dir="ltr">NovaX Matrix</bdi> على YouTube',
     videoAria: 'فيديو: ', tocAria: 'محتويات الدليل',
   },
 };
@@ -150,6 +153,7 @@ function tokensFor(lang) {
     STORE_URL: () => esc(STORE_URL[lang]),
     STORE_URL_AR: () => esc(STORE_URL.ar),
     STORE_BADGE: () => storeBadge(lang),
+    YOUTUBE_URL: () => esc(YOUTUBE_URL),
     REQUIREMENTS: () => reqList(lang),
     GUIDE_TOC: () => guideToc(lang),
     GUIDE_CHAPTERS: () => guideChapters(lang),
@@ -238,6 +242,7 @@ for (const p of pages) {
     alternates,
     langRedirect,
     skip: t.skip, navAria: t.navAria, footerNavAria: t.footerNavAria, downloadBtn: t.downloadBtn, storeUrl: esc(STORE_URL[p.lang]),
+    storeLink: t.storeLink, youtubeUrl: esc(YOUTUBE_URL), youtubeLink: t.youtubeLink,
     themeAria: t.themeAria, menuAria: t.menuAria,
     footerAbout: t.footerAbout, links: t.links, contactHead: t.contact, whatsapp: t.whatsapp, support: t.support, tagline: t.tagline, familyUrl: t.familyUrl, family: t.family,
     navDownload: t.nav.download, navGuide: t.nav.guide, navForms: t.nav.forms, navActivation: t.nav.activation, navPrivacy: t.privacy,
