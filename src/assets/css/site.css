@@ -15,6 +15,8 @@
  /* brand: the logo blue, a little deeper and calmer */
  --p:#2050C0;--pd:#183F9E;--pl:#ECF1FC;--on-p:#fff;
  --a:#18AEE8;--on-a:#03192C;
+ /* Iris Exam: its square and its section (teal) */
+ --x:#0F766E;--xd:#0B5F58;--xl:#E7F4F2;--on-x:#fff;
  /* neutrals */
  --bg:#F7F8FA;--s:#fff;--s2:#F0F2F6;--b:#E2E6ED;--t:#111A2C;--m:#525E74;
  --warn:#B45309;--bad:#C2410C;--ok:#15803D;
@@ -29,6 +31,7 @@
  :root:not([data-theme="light"]){
   --p:#7EAAFF;--pd:#A6C4FF;--pl:#15233F;--on-p:#06142C;
   --a:#3CC8F5;--on-a:#03192C;
+  --x:#2DD4BF;--xd:#5EEAD4;--xl:#0D2826;--on-x:#042F2C;
   --bg:#0A0F1A;--s:#111827;--s2:#0E1522;--b:#222D40;--t:#E7ECF4;--m:#A0ACBF;
   --warn:#F59E0B;--bad:#FB923C;--ok:#4ADE80;
   --navy:#070C17;--navy2:#0F1B33;
@@ -44,6 +47,7 @@
 :root[data-theme="dark"]{
  --p:#7EAAFF;--pd:#A6C4FF;--pl:#15233F;--on-p:#06142C;
  --a:#3CC8F5;--on-a:#03192C;
+ --x:#2DD4BF;--xd:#5EEAD4;--xl:#0D2826;--on-x:#042F2C;
  --bg:#0A0F1A;--s:#111827;--s2:#0E1522;--b:#222D40;--t:#E7ECF4;--m:#A0ACBF;
  --warn:#F59E0B;--bad:#FB923C;--ok:#4ADE80;
  --navy:#070C17;--navy2:#0F1B33;
@@ -147,6 +151,10 @@ html[lang="en"] .dx-hero .lead{line-height:1.6}
 .zg rect{fill:none;stroke:currentColor;stroke-width:1.8}
 .zg .c{fill:currentColor;stroke:none}
 .zg .zi{fill:var(--p);stroke:none}
+/* Iris Exam's square (bottom-right): a teal outline in Iris's grid; in its own grid Iris stays blue and Iris Exam lights up */
+.zg .zxo{stroke:var(--x)}
+.zg .zp{fill:var(--p);stroke:none}
+.zg .zi.zx{fill:var(--x)}
 @media (prefers-reduced-motion:no-preference){
  .js .zoom{height:170vh;padding:0;overflow:visible}
  .js .zs{position:sticky;top:0;height:100vh;height:100svh;overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;padding-top:68px}
@@ -156,6 +164,11 @@ html[lang="en"] .dx-hero .lead{line-height:1.6}
 @keyframes dx-in{from{opacity:0}}
 
 /* Home: the Iris band — same colour as Iris's square, so the zoom lands on it */
+/* .exam swaps the brand tokens for Iris Exam's teal, so .iris.exam is the same band in teal */
+.exam{--p:var(--x);--pd:var(--xd);--pl:var(--xl);--on-p:var(--on-x)}
+.xbank{text-align:center;padding:40px 0 48px}
+.xbank p{color:var(--m);max-width:40em;margin:0 auto}
+.xbank b{color:var(--t)}
 .iris{background:var(--p);color:var(--on-p);text-align:center;padding:88px 0}
 .iris img.logo{width:72px;height:72px;border-radius:50%;margin:0 auto 18px;display:block;box-shadow:0 0 0 4px color-mix(in srgb,var(--on-p) 25%,transparent)}
 .iris .kicker{color:inherit;opacity:.85;font-size:var(--fs-sm)}

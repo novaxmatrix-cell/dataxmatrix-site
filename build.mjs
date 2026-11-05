@@ -24,6 +24,8 @@ const PREFIX = { en: '', ar: '/ar' };
 // Iris is distributed only through the Microsoft Store. The direct installers are retired; data/releases.json keeps their history.
 // The Store URL carries no parameters (no locale hint, no tracking); the Store picks the visitor's language itself.
 const STORE_URL = { en: 'https://apps.microsoft.com/detail/9P5FQXQH4HF3', ar: 'https://apps.microsoft.com/detail/9P5FQXQH4HF3' };
+// Iris Exam (worksheets and tests for teachers): a separate Store app, its own square and section on the home page.
+const EXAM_STORE_URL = 'https://apps.microsoft.com/detail/9NDTGZDSTDF7';
 // The NovaX Matrix YouTube channel (DataX Matrix is part of NovaX Matrix). No video is embedded on the site; this is a plain link.
 const YOUTUBE_URL = 'https://www.youtube.com/@NovaX-Matrix';
 
@@ -77,6 +79,7 @@ const WA_TEXT = {
     WA_PRIVATE_TRIAL_URL: 'Hello, we’re a private school and would like to try Iris for free.\nSchool name: \nCity: \nApprox. number of students: ',
     WA_QUOTE_URL: 'Hello, we’d like a price quote for Iris.\nSchool name: \nCity: \nApprox. number of students: ',
     WA_ACTIVATE_URL: 'Hello, I’d like to activate Iris.\nSchool name: \nRequest code: ',
+    WA_EXAM_TRIAL_URL: 'Hello, I’d like a trial code for Iris Exam.\nName: \nRequest code: ',
     WA_REPORT_URL: 'Hello, I’d like to report a problem with Iris.\nSchool name: \nIris version: \nWhat happened: \n(I’ll attach a screenshot)',
   },
   ar: {
@@ -86,6 +89,7 @@ const WA_TEXT = {
     WA_PRIVATE_TRIAL_URL: 'مرحباً، نحن مدرسة خاصة ونرغب بتجربة برنامج Iris مجاناً.\nاسم المدرسة: \nالمدينة: \nعدد الطلاب تقريباً: ',
     WA_QUOTE_URL: 'مرحباً، نرغب بعرض سعر لبرنامج Iris.\nاسم المدرسة: \nالمدينة: \nعدد الطلاب تقريباً: ',
     WA_ACTIVATE_URL: 'مرحباً، أرغب بتفعيل برنامج Iris.\nاسم المدرسة: \nرمز الطلب: ',
+    WA_EXAM_TRIAL_URL: 'مرحباً، أرغب برمز تجربة لبرنامج Iris Exam.\nالاسم: \nرمز الطلب: ',
     WA_REPORT_URL: 'مرحباً، أود الإبلاغ عن مشكلة في برنامج Iris.\nاسم المدرسة: \nإصدار البرنامج: \nوصف المشكلة: \n(سأرفق صورة للشاشة)',
   },
 };
@@ -171,6 +175,7 @@ function tokensFor(lang) {
     STORE_URL: () => esc(STORE_URL[lang]),
     STORE_URL_AR: () => esc(STORE_URL.ar),
     STORE_BADGE: () => storeBadge(lang),
+    EXAM_STORE_URL: () => esc(EXAM_STORE_URL),
     YOUTUBE_URL: () => esc(YOUTUBE_URL),
     REQUIREMENTS: () => reqList(lang),
     GUIDE_TOC: () => guideToc(lang),

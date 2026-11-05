@@ -70,30 +70,37 @@
     Array.prototype.forEach.call(rv, function (el) { el.classList.add('in'); });
   }
 
-  // Home: the DataX grid lights Iris's square, then zooms into it once and lands on the Iris section
-  // (same colour). CSS makes the stage tall and sticky only with JS and when motion is welcome.
-  var stage = document.querySelector('.zoom');
-  if (stage && 'IntersectionObserver' in window && matchMedia('(prefers-reduced-motion: no-preference)').matches) {
-    var zs = stage.querySelector('.zs'), zw = stage.querySelector('.zgw'), zi = stage.querySelector('.zi'), zc = stage.querySelector('.zcap');
+  // Home: each .zoom stage shows the DataX grid, lights one product's square (.zi), then zooms into it once and lands on
+  // that product's section (same colour): Iris (bottom-middle), then Iris Exam (bottom-right). The zoom centres the lit
+  // square, whatever its place in the grid. CSS makes the stages tall and sticky only with JS and when motion is welcome.
+  var stages = document.querySelectorAll('.zoom');
+  if (stages.length && 'IntersectionObserver' in window && matchMedia('(prefers-reduced-motion: no-preference)').matches) {
     var clamp = function (x) { return x < 0 ? 0 : x > 1 ? 1 : x; };
-    var queued = false;
-    var draw = function () {
-      queued = false;
-      var vh = innerHeight, top = stage.getBoundingClientRect().top;
-      var z = clamp(-top / (stage.offsetHeight - zs.offsetHeight));
-      var e = clamp((z - .08) / .92); e = e * e * (3 - 2 * e);
-      var w = zw.offsetWidth, dy = zs.offsetHeight / 2 + 34 - (zw.offsetTop + .87 * w);
-      var s = Math.pow(1.06 * Math.max(innerWidth, vh) / (.26 * w), e);
-      zi.style.opacity = clamp((.5 * vh - top) / (.5 * vh));
-      zc.style.opacity = 1 - clamp(z / .3);
-      zw.style.transform = 'translateY(' + (dy * e).toFixed(1) + 'px) scale(' + s.toFixed(3) + ')';
-    };
-    var req = function () { if (!queued) { queued = true; requestAnimationFrame(draw); } };
-    new IntersectionObserver(function (en) {
-      if (en[0].isIntersecting) { addEventListener('scroll', req, { passive: true }); addEventListener('resize', req); }
-      else { removeEventListener('scroll', req); removeEventListener('resize', req); }
-      draw();
-    }).observe(stage);
+    Array.prototype.forEach.call(stages, function (stage) {
+      var zs = stage.querySelector('.zs'), zw = stage.querySelector('.zgw'), zi = stage.querySelector('.zi'), zc = stage.querySelector('.zcap');
+      // The lit square's centre, as a fraction of the grid (viewBox 0 0 100 100).
+      var fx = (+zi.getAttribute('x') + zi.getAttribute('width') / 2) / 100, fy = (+zi.getAttribute('y') + zi.getAttribute('height') / 2) / 100;
+      zw.style.transformOrigin = (fx * 100) + '% ' + (fy * 100) + '%';
+      var queued = false;
+      var draw = function () {
+        queued = false;
+        var vh = innerHeight, top = stage.getBoundingClientRect().top;
+        var z = clamp(-top / (stage.offsetHeight - zs.offsetHeight));
+        var e = clamp((z - .08) / .92); e = e * e * (3 - 2 * e);
+        var w = zw.offsetWidth;
+        var dx = zs.offsetWidth / 2 - (zw.offsetLeft + fx * w), dy = zs.offsetHeight / 2 + 34 - (zw.offsetTop + fy * w);
+        var s = Math.pow(1.06 * Math.max(innerWidth, vh) / (.26 * w), e);
+        zi.style.opacity = clamp((.5 * vh - top) / (.5 * vh));
+        zc.style.opacity = 1 - clamp(z / .3);
+        zw.style.transform = 'translate(' + (dx * e).toFixed(1) + 'px,' + (dy * e).toFixed(1) + 'px) scale(' + s.toFixed(3) + ')';
+      };
+      var req = function () { if (!queued) { queued = true; requestAnimationFrame(draw); } };
+      new IntersectionObserver(function (en) {
+        if (en[0].isIntersecting) { addEventListener('scroll', req, { passive: true }); addEventListener('resize', req); }
+        else { removeEventListener('scroll', req); removeEventListener('resize', req); }
+        draw();
+      }).observe(stage);
+    });
   }
 
   // Promo video in a dialog. The link falls back to the plain mp4 without JS or <dialog>.
