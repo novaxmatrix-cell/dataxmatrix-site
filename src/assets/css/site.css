@@ -397,6 +397,10 @@ footer a:hover{color:#fff}
 .fcols li svg.i{color:#6FD6FA;font-size:18px}
 footer .brand{color:#fff;margin-bottom:10px}
 footer .brand img{width:36px;height:36px}
+footer .brand.fx{margin-top:20px}
+/* A product not yet in the Store: the button's shape, clearly not clickable */
+.btn.soon{opacity:.7;cursor:default;box-shadow:none;border-style:dashed;border-color:currentColor}
+.btn.soon:hover{background:var(--on-p)}
 .fbar{border-top:1px solid rgba(255,255,255,.1);padding:18px 0 22px;font-size:var(--fs-xs);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
 .fbar .mk{width:1.15em;height:1.15em;vertical-align:-.2em;margin-inline-end:5px}
 .xm{display:flex;justify-content:center;padding:0 0 22px}

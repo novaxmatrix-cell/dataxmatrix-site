@@ -26,6 +26,9 @@ const PREFIX = { en: '', ar: '/ar' };
 const STORE_URL = { en: 'https://apps.microsoft.com/detail/9P5FQXQH4HF3', ar: 'https://apps.microsoft.com/detail/9P5FQXQH4HF3' };
 // Iris Exam (worksheets and tests for teachers): a separate Store app, its own square and section on the home page.
 const EXAM_STORE_URL = 'https://apps.microsoft.com/detail/9NDTGZDSTDF7';
+// THE SWITCH: false while Iris Exam awaits Store approval, so its Store button is a disabled «قريباً في Microsoft Store» label.
+// After approval, set it to true: {{EXAM_STORE_BTN}} becomes the real link to EXAM_STORE_URL.
+const EXAM_IN_STORE = false;
 // The NovaX Matrix YouTube channel (DataX Matrix is part of NovaX Matrix). No video is embedded on the site; this is a plain link.
 const YOUTUBE_URL = 'https://www.youtube.com/@NovaX-Matrix';
 
@@ -51,6 +54,7 @@ const STR = {
     familyUrl: 'https://novaxmatrix.com/', family: 'DataX Matrix is part of NovaX Matrix',
     fonts: ['IBMPlexSans-Regular', 'IBMPlexSans-Bold'],
     storeAlt: 'Download from the Microsoft Store', storeLink: 'Iris on the Microsoft Store', youtubeLink: 'NovaX Matrix on YouTube',
+    examGet: 'Get it from Microsoft Store', examSoon: 'Coming soon to Microsoft Store', footerExam: 'Worksheets and tests for teachers, from the Palestinian curriculum question bank.',
     videoAria: 'Video: ', tocAria: 'Guide contents', watch: 'Play the video (on YouTube)', noVideo: 'Written steps, no video',
   },
   ar: {
@@ -64,7 +68,8 @@ const STR = {
     links: 'روابط', contact: 'تواصل معنا', whatsapp: 'واتساب', support: 'الدعم الفني', tagline: 'للمدارس الفلسطينية الحكومية والخاصة',
     familyUrl: 'https://novaxmatrix.com/ar/', family: '<bdi dir="ltr">DataX Matrix</bdi> جزء من <bdi dir="ltr">NovaX Matrix</bdi>',
     fonts: ['IBMPlexSansArabic-Regular', 'IBMPlexSansArabic-Bold'],
-    storeAlt: 'التنزيل من Microsoft Store', storeLink: 'Iris على Microsoft Store', youtubeLink: 'قناة <bdi dir="ltr">NovaX Matrix</bdi> على YouTube',
+    storeAlt: 'التنزيل من Microsoft Store', storeLink: 'Iris على Microsoft Store',
+    examGet: 'نزّله من Microsoft Store', examSoon: 'قريباً في Microsoft Store', footerExam: 'أوراق عمل واختبارات للمعلمين من بنك أسئلة المنهاج الفلسطيني.', youtubeLink: 'قناة <bdi dir="ltr">NovaX Matrix</bdi> على YouTube',
     videoAria: 'فيديو: ', tocAria: 'محتويات الدليل', watch: 'شغّل الفيديو (على YouTube)', noVideo: 'خطوات مكتوبة، بلا فيديو',
   },
 };
@@ -175,7 +180,10 @@ function tokensFor(lang) {
     STORE_URL: () => esc(STORE_URL[lang]),
     STORE_URL_AR: () => esc(STORE_URL.ar),
     STORE_BADGE: () => storeBadge(lang),
-    EXAM_STORE_URL: () => esc(EXAM_STORE_URL),
+    // Iris Exam's Store button in its home section: the real link, or a disabled label until EXAM_IN_STORE is true.
+    EXAM_STORE_BTN: () => (EXAM_IN_STORE
+      ? `<a class="btn bw lg" href="${esc(EXAM_STORE_URL)}" rel="noopener"><svg class="i" aria-hidden="true"><use href="#i-download"/></svg>${STR[lang].examGet}</a>`
+      : `<span class="btn bw lg soon" aria-disabled="true"><svg class="i" aria-hidden="true"><use href="#i-clock"/></svg>${STR[lang].examSoon}</span>`),
     YOUTUBE_URL: () => esc(YOUTUBE_URL),
     REQUIREMENTS: () => reqList(lang),
     GUIDE_TOC: () => guideToc(lang),
@@ -268,7 +276,7 @@ for (const p of pages) {
     skip: t.skip, navAria: t.navAria, footerNavAria: t.footerNavAria, downloadBtn: t.downloadBtn, storeUrl: esc(STORE_URL[p.lang]),
     storeLink: t.storeLink, youtubeUrl: esc(YOUTUBE_URL), youtubeLink: t.youtubeLink,
     themeAria: t.themeAria, menuAria: t.menuAria,
-    footerAbout: t.footerAbout, links: t.links, contactHead: t.contact, whatsapp: t.whatsapp, support: t.support, tagline: t.tagline, familyUrl: t.familyUrl, family: t.family,
+    footerAbout: t.footerAbout, footerExam: t.footerExam, links: t.links, contactHead: t.contact, whatsapp: t.whatsapp, support: t.support, tagline: t.tagline, familyUrl: t.familyUrl, family: t.family,
     navDownload: t.nav.download, navGuide: t.nav.guide, navForms: t.nav.forms, navActivation: t.nav.activation, navPrivacy: t.privacy,
     nav,
     year: String(new Date().getFullYear()),
