@@ -28,7 +28,7 @@ const STORE_URL = { en: 'https://apps.microsoft.com/detail/9P5FQXQH4HF3', ar: 'h
 const EXAM_STORE_URL = 'https://apps.microsoft.com/detail/9NDTGZDSTDF7';
 // THE SWITCH: false while Iris Exam awaits Store approval, so its Store button is a disabled «قريباً في Microsoft Store» label.
 // After approval, set it to true: {{EXAM_STORE_BTN}} becomes the real link to EXAM_STORE_URL.
-const EXAM_IN_STORE = false;
+const EXAM_IN_STORE = true;
 // The NovaX Matrix YouTube channel (DataX Matrix is part of NovaX Matrix). No video is embedded on the site; this is a plain link.
 const YOUTUBE_URL = 'https://www.youtube.com/@NovaX-Matrix';
 
