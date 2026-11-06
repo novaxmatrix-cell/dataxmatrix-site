@@ -128,6 +128,7 @@ html[lang="en"] .dx-hero .lead{line-height:1.6}
 .iris-card p{font-size:var(--fs-sm);color:var(--m)}
 .iris-card .cta{grid-column:1/-1;margin-top:14px;gap:10px}
 .iris-card .note{grid-column:1/-1;font-size:var(--fs-xs);margin-top:8px}
+.iris-card+.iris-card{margin-top:16px}
 .go{color:var(--p);font-weight:700;font-size:var(--fs-sm);display:inline-flex;align-items:center;gap:6px;min-height:46px;padding:0 6px;text-decoration:none}
 .go:hover{text-decoration:underline}
 .go svg.i{transform:rotate(90deg)}
@@ -401,6 +402,8 @@ footer .brand.fx{margin-top:20px}
 /* A product not yet in the Store: the button's shape, clearly not clickable */
 .btn.soon{opacity:.7;cursor:default;box-shadow:none;border-style:dashed;border-color:currentColor}
 .btn.soon:hover{background:var(--on-p)}
+/* The filled (.bp) variant, in the hero card: keep the button's own colours and size over the generic .soon box */
+.btn.bp.soon,.btn.bp.soon:hover{background:var(--p);color:var(--on-p);padding:10px 22px;border-radius:var(--r)}
 .fbar{border-top:1px solid rgba(255,255,255,.1);padding:18px 0 22px;font-size:var(--fs-xs);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
 .fbar .mk{width:1.15em;height:1.15em;vertical-align:-.2em;margin-inline-end:5px}
 .xm{display:flex;justify-content:center;padding:0 0 22px}
@@ -447,6 +450,7 @@ html[lang="en"] body{line-height:1.6}
  .iris-card{margin-top:18px;padding:14px 16px;grid-template-columns:44px minmax(0,1fr)}
  .iris-card img{width:44px;height:44px}
  .iris-card .cta .bp{flex:1 1 100%}
+ .iris-card+.iris-card{margin-top:12px}
  .go{flex:1 1 100%;justify-content:center;min-height:40px}
  .vals,.feats{grid-template-columns:1fr}
  .iris{padding:64px 0}

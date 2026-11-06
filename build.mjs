@@ -54,7 +54,7 @@ const STR = {
     familyUrl: 'https://novaxmatrix.com/', family: 'DataX Matrix is part of NovaX Matrix',
     fonts: ['IBMPlexSans-Regular', 'IBMPlexSans-Bold'],
     storeAlt: 'Download from the Microsoft Store', storeLink: 'Iris on the Microsoft Store', youtubeLink: 'NovaX Matrix on YouTube',
-    examGet: 'Get it from Microsoft Store', examSoon: 'Coming soon to Microsoft Store', footerExam: 'Worksheets and tests for teachers, from the Palestinian curriculum question bank.',
+    examGet: 'Get it from Microsoft Store', examStoreLink: 'Iris Exam on Microsoft Store', examSoon: 'Coming soon to Microsoft Store', footerExam: 'Worksheets and tests for teachers, from the Palestinian curriculum question bank.',
     videoAria: 'Video: ', tocAria: 'Guide contents', watch: 'Play the video (on YouTube)', noVideo: 'Written steps, no video',
   },
   ar: {
@@ -69,7 +69,7 @@ const STR = {
     familyUrl: 'https://novaxmatrix.com/ar/', family: '<bdi dir="ltr">DataX Matrix</bdi> جزء من <bdi dir="ltr">NovaX Matrix</bdi>',
     fonts: ['IBMPlexSansArabic-Regular', 'IBMPlexSansArabic-Bold'],
     storeAlt: 'التنزيل من Microsoft Store', storeLink: 'Iris على Microsoft Store',
-    examGet: 'نزّله من Microsoft Store', examSoon: 'قريباً في Microsoft Store', footerExam: 'أوراق عمل واختبارات للمعلمين من بنك أسئلة المنهاج الفلسطيني.', youtubeLink: 'قناة <bdi dir="ltr">NovaX Matrix</bdi> على YouTube',
+    examGet: 'نزّله من Microsoft Store', examStoreLink: 'Iris Exam على Microsoft Store', examSoon: 'قريباً في Microsoft Store', footerExam: 'أوراق عمل واختبارات للمعلمين من بنك أسئلة المنهاج الفلسطيني.', youtubeLink: 'قناة <bdi dir="ltr">NovaX Matrix</bdi> على YouTube',
     videoAria: 'فيديو: ', tocAria: 'محتويات الدليل', watch: 'شغّل الفيديو (على YouTube)', noVideo: 'خطوات مكتوبة، بلا فيديو',
   },
 };
@@ -133,6 +133,10 @@ const lastInstaller = rel.releases[0] || fail('releases.json: keep the last inst
 const reqList = (lang) => pick(rel, 'requirements', lang)
   .map((x) => `<li>${lang === 'ar' ? esc(x).replace(/\d+(?:-bit| GB)\b/g, (m) => `<bdi dir="ltr">${m}</bdi>`) : esc(x)}</li>`).join('');
 
+// Iris Exam's Store button (see EXAM_IN_STORE): class 'bw lg' in its section, 'bp' in its hero card.
+const examStoreBtn = (lang, cls) => (EXAM_IN_STORE
+  ? `<a class="btn ${cls}" href="${esc(EXAM_STORE_URL)}" rel="noopener"><svg class="i" aria-hidden="true"><use href="#i-download"/></svg>${STR[lang].examGet}</a>`
+  : `<span class="btn ${cls} soon" aria-disabled="true"><svg class="i" aria-hidden="true"><use href="#i-clock"/></svg>${STR[lang].examSoon}</span>`);
 // Microsoft's official badge, unchanged (self-hosted): dark on the light theme, light on the dark theme.
 const storeBadge = (lang) => `<a class="msb" href="${esc(STORE_URL[lang])}" rel="noopener">${['dark', 'light'].map((v) =>
   `<img class="msb-${v}" src="/assets/img/store/ms-store-${lang}-${v}.svg" width="161" height="44" alt="${v === 'dark' ? STR[lang].storeAlt : ''}">`).join('')}</a>`;
@@ -180,10 +184,10 @@ function tokensFor(lang) {
     STORE_URL: () => esc(STORE_URL[lang]),
     STORE_URL_AR: () => esc(STORE_URL.ar),
     STORE_BADGE: () => storeBadge(lang),
-    // Iris Exam's Store button in its home section: the real link, or a disabled label until EXAM_IN_STORE is true.
-    EXAM_STORE_BTN: () => (EXAM_IN_STORE
-      ? `<a class="btn bw lg" href="${esc(EXAM_STORE_URL)}" rel="noopener"><svg class="i" aria-hidden="true"><use href="#i-download"/></svg>${STR[lang].examGet}</a>`
-      : `<span class="btn bw lg soon" aria-disabled="true"><svg class="i" aria-hidden="true"><use href="#i-clock"/></svg>${STR[lang].examSoon}</span>`),
+    // Iris Exam's Store button: the real link, or a disabled label until EXAM_IN_STORE is true.
+    // EXAM_STORE_BTN sits in its teal home section (white button); EXAM_STORE_BTN_CARD in its hero card (teal button, like Iris's).
+    EXAM_STORE_BTN: () => examStoreBtn(lang, 'bw lg'),
+    EXAM_STORE_BTN_CARD: () => examStoreBtn(lang, 'bp'),
     YOUTUBE_URL: () => esc(YOUTUBE_URL),
     REQUIREMENTS: () => reqList(lang),
     GUIDE_TOC: () => guideToc(lang),
@@ -274,6 +278,7 @@ for (const p of pages) {
     alternates,
     langRedirect,
     skip: t.skip, navAria: t.navAria, footerNavAria: t.footerNavAria, downloadBtn: t.downloadBtn, storeUrl: esc(STORE_URL[p.lang]),
+    examStoreItem: EXAM_IN_STORE ? `\n    <li><a href="${esc(EXAM_STORE_URL)}" rel="noopener">${t.examStoreLink}</a></li>` : '',
     storeLink: t.storeLink, youtubeUrl: esc(YOUTUBE_URL), youtubeLink: t.youtubeLink,
     themeAria: t.themeAria, menuAria: t.menuAria,
     footerAbout: t.footerAbout, footerExam: t.footerExam, links: t.links, contactHead: t.contact, whatsapp: t.whatsapp, support: t.support, tagline: t.tagline, familyUrl: t.familyUrl, family: t.family,
