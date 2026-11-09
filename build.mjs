@@ -240,6 +240,17 @@ fs.rmSync(DIST, { recursive: true, force: true });
 fs.mkdirSync(DIST, { recursive: true });
 fs.cpSync(path.join(SRC, 'assets'), path.join(DIST, 'assets'), { recursive: true });
 fs.copyFileSync(path.join(SRC, 'favicon.ico'), path.join(DIST, 'favicon.ico'));
+// Self-contained pages published as-is, outside the layout, nav and sitemap (unlisted). Each folder with a sw.js gets
+// its cache version stamped from a hash of the folder, so any change to the files ships a new service worker.
+fs.cpSync(path.join(SRC, 'standalone'), DIST, { recursive: true });
+for (const sw of walk(path.join(SRC, 'standalone')).filter((f) => path.basename(f) === 'sw.js')) {
+  const dir = path.dirname(sw);
+  const h = crypto.createHash('sha1');
+  for (const f of walk(dir).sort()) h.update(path.relative(dir, f)).update(fs.readFileSync(f));
+  const src = fs.readFileSync(sw, 'utf8');
+  if (!src.includes('__EMERGENCY_VERSION__')) fail(`${path.relative(ROOT, sw)}: missing __EMERGENCY_VERSION__`);
+  fs.writeFileSync(path.join(DIST, path.relative(path.join(SRC, 'standalone'), sw)), src.replace('__EMERGENCY_VERSION__', h.digest('hex').slice(0, 10)));
+}
 
 const assetVersion = crypto.createHash('sha1')
   .update(fs.readFileSync(path.join(SRC, 'assets/css/site.css')))
