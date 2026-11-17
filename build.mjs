@@ -11,8 +11,9 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import crypto from 'node:crypto';
+import { fileURLToPath } from 'node:url';
 
-const ROOT = path.dirname(new URL(import.meta.url).pathname);
+const ROOT = path.dirname(fileURLToPath(import.meta.url));
 const SRC = path.join(ROOT, 'src');
 const DIST = path.join(ROOT, 'dist');
 
@@ -24,6 +25,11 @@ const PREFIX = { en: '', ar: '/ar' };
 // Iris is distributed only through the Microsoft Store. The direct installers are retired; data/releases.json keeps their history.
 // The Store URL carries no parameters (no locale hint, no tracking); the Store picks the visitor's language itself.
 const STORE_URL = { en: 'https://apps.microsoft.com/detail/9P5FQXQH4HF3', ar: 'https://apps.microsoft.com/detail/9P5FQXQH4HF3' };
+// Iris School download buttons: Microsoft's own Store web installer (what the badge at apps.microsoft.com/badge uses in its
+// "Direct" launch mode), as a plain link with no outside script. One click downloads a small Microsoft-signed installer
+// («Iris School Installer.exe») that installs Iris from the Store and opens it. It carries no parameters, like STORE_URL.
+// The installer runs on Windows only: on other devices site.js points the same buttons to the Store page (STORE_URL).
+const DOWNLOAD_URL = 'https://get.microsoft.com/installer/download/9P5FQXQH4HF3';
 // Iris Exam (worksheets and tests for teachers): a separate Store app, its own square and section on the home page.
 const EXAM_STORE_URL = 'https://apps.microsoft.com/detail/9NDTGZDSTDF7';
 // THE SWITCH: false while Iris Exam awaits Store approval, so its Store button is a disabled «قريباً في Microsoft Store» label.
@@ -79,20 +85,16 @@ const NAV = [['home', '/'], ['download', '/download/'], ['activation', '/activat
 const WA_TEXT = {
   en: {
     WA_URL: 'Hello, I’m contacting you about Iris for our school.',
-    WA_TRIAL_URL: 'Hello, we’d like to try Iris at our school.\nSchool name: \nCity: ',
     WA_DEMO_URL: 'Hello, we’d like a demo of Iris for our school.\nSchool name: \nCity: ',
-    WA_PRIVATE_TRIAL_URL: 'Hello, we’re a private school and would like to try Iris for free.\nSchool name: \nCity: \nApprox. number of students: ',
-    WA_QUOTE_URL: 'Hello, we would like to subscribe to Iris School. School name: ',
+    WA_SUBSCRIBE_URL: 'Hello, we would like to subscribe to Iris School. School name: ',
     WA_ACTIVATE_URL: 'Hello, I’d like to activate Iris.\nSchool name: \nRequest code: ',
     WA_EXAM_TRIAL_URL: 'Hello, I’d like a trial code for Iris Exam.\nName: \nRequest code: ',
     WA_REPORT_URL: 'Hello, I’d like to report a problem with Iris.\nSchool name: \nIris version: \nWhat happened: \n(I’ll attach a screenshot)',
   },
   ar: {
     WA_URL: 'مرحباً، أتواصل بخصوص برنامج Iris لمدرستنا.',
-    WA_TRIAL_URL: 'مرحباً، نرغب بتجربة برنامج Iris في مدرستنا.\nاسم المدرسة: \nالمدينة: ',
     WA_DEMO_URL: 'مرحباً، نرغب بعرض لبرنامج Iris في مدرستنا.\nاسم المدرسة: \nالمدينة: ',
-    WA_PRIVATE_TRIAL_URL: 'مرحباً، نحن مدرسة خاصة ونرغب بتجربة برنامج Iris مجاناً.\nاسم المدرسة: \nالمدينة: \nعدد الطلاب تقريباً: ',
-    WA_QUOTE_URL: 'مرحباً، نرغب بالاشتراك في Iris School. اسم المدرسة: ',
+    WA_SUBSCRIBE_URL: 'مرحباً، نرغب بالاشتراك في Iris School. اسم المدرسة: ',
     WA_ACTIVATE_URL: 'مرحباً، أرغب بتفعيل برنامج Iris.\nاسم المدرسة: \nرمز الطلب: ',
     WA_EXAM_TRIAL_URL: 'مرحباً، أرغب برمز تجربة لبرنامج Iris Exam.\nالاسم: \nرمز الطلب: ',
     WA_REPORT_URL: 'مرحباً، أود الإبلاغ عن مشكلة في برنامج Iris.\nاسم المدرسة: \nإصدار البرنامج: \nوصف المشكلة: \n(سأرفق صورة للشاشة)',
@@ -138,7 +140,7 @@ const examStoreBtn = (lang, cls) => (EXAM_IN_STORE
   ? `<a class="btn ${cls}" href="${esc(EXAM_STORE_URL)}" rel="noopener"><svg class="i" aria-hidden="true"><use href="#i-download"/></svg>${STR[lang].examGet}</a>`
   : `<span class="btn ${cls} soon" aria-disabled="true"><svg class="i" aria-hidden="true"><use href="#i-clock"/></svg>${STR[lang].examSoon}</span>`);
 // Microsoft's official badge, unchanged (self-hosted): dark on the light theme, light on the dark theme.
-const storeBadge = (lang) => `<a class="msb" href="${esc(STORE_URL[lang])}" rel="noopener">${['dark', 'light'].map((v) =>
+const storeBadge = (lang) => `<a class="msb" href="${esc(DOWNLOAD_URL)}" rel="noopener">${['dark', 'light'].map((v) =>
   `<img class="msb-${v}" src="/assets/img/store/ms-store-${lang}-${v}.svg" width="161" height="44" alt="${v === 'dark' ? STR[lang].storeAlt : ''}">`).join('')}</a>`;
 
 // ---------- guide (data/guide.json → /guide/, /ar/guide/ and the Arabic chapter pages) ----------
@@ -182,7 +184,7 @@ function tokensFor(lang) {
   const t = {
     WA_DISPLAY: () => (lang === 'en' ? '<span class="ltr">+972 56 880 6666</span>' : '<span class="ltr">056-880-6666</span>'),
     STORE_URL: () => esc(STORE_URL[lang]),
-    STORE_URL_AR: () => esc(STORE_URL.ar),
+    DOWNLOAD_URL: () => esc(DOWNLOAD_URL),
     STORE_BADGE: () => storeBadge(lang),
     // Iris Exam's Store button: the real link, or a disabled label until EXAM_IN_STORE is true.
     // EXAM_STORE_BTN sits in its teal home section (white button); EXAM_STORE_BTN_CARD in its hero card (teal button, like Iris's).
@@ -288,7 +290,7 @@ for (const p of pages) {
     fontPreload: t.fonts.map((f) => `<link rel="preload" href="/assets/fonts/${f}.woff2" as="font" type="font/woff2" crossorigin>`).join('\n'),
     alternates,
     langRedirect,
-    skip: t.skip, navAria: t.navAria, footerNavAria: t.footerNavAria, downloadBtn: t.downloadBtn, storeUrl: esc(STORE_URL[p.lang]),
+    skip: t.skip, navAria: t.navAria, footerNavAria: t.footerNavAria, downloadBtn: t.downloadBtn, storeUrl: esc(STORE_URL[p.lang]), downloadUrl: esc(DOWNLOAD_URL),
     examStoreItem: EXAM_IN_STORE ? `\n    <li><a href="${esc(EXAM_STORE_URL)}" rel="noopener">${t.examStoreLink}</a></li>` : '',
     storeLink: t.storeLink, youtubeUrl: esc(YOUTUBE_URL), youtubeLink: t.youtubeLink,
     themeAria: t.themeAria, menuAria: t.menuAria,

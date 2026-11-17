@@ -124,6 +124,14 @@
     a.addEventListener('click', function () { try { localStorage.setItem('lang', a.getAttribute('data-lang')); } catch (e) {} });
   });
 
+  // Download buttons link to Microsoft's small Store installer, a Windows program. On a phone or a Mac it is no use,
+  // so there the same buttons open the app's Microsoft Store page instead.
+  if (!/Windows NT/.test(navigator.userAgent)) {
+    Array.prototype.forEach.call(document.querySelectorAll('a[href^="https://get.microsoft.com/installer/download/"]'), function (a) {
+      a.href = 'https://apps.microsoft.com/detail/' + a.pathname.split('/').pop();
+    });
+  }
+
   // Copy buttons: data-copy="<id of the element whose text to copy>".
   Array.prototype.forEach.call(document.querySelectorAll('[data-copy]'), function (b) {
     b.addEventListener('click', function () {

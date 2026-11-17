@@ -312,13 +312,15 @@ section.alt .pc.best{background:var(--s)}
 .pc.best{border:2px solid var(--p);box-shadow:var(--shadow)}
 .pc h3{font-size:var(--fs-lg)}
 .pc .amt{font-size:28px;font-weight:800;color:var(--p);margin:6px 0}
+.pc .pdesc{font-size:var(--fs-sm);color:var(--m);margin:0 0 8px}
 .pc .pay{color:var(--t);font-size:var(--fs-sm);margin:6px 0 12px}
 .pc li{font-size:var(--fs-sm);margin-inline-start:18px;color:var(--m)}
 .trial{display:flex;align-items:center;gap:12px 18px;flex-wrap:wrap;background:var(--pl);border-radius:var(--r-lg);padding:18px 22px;margin-top:20px}
 .trial .badge{margin:0}
 .trial p{flex:1 1 220px;font-size:var(--fs-sm)}
-.quote{display:flex;align-items:center;justify-content:space-between;gap:12px 18px;flex-wrap:wrap;margin-top:24px;padding-top:20px;border-top:1px solid var(--b)}
-.quote p{font-weight:700}
+.trial .dl{display:flex;flex-direction:column;align-items:center;gap:6px}
+.trial .dl small{font-size:var(--fs-xs);color:var(--m);text-align:center}
+.quote{display:flex;align-items:center;justify-content:flex-start;gap:12px 18px;flex-wrap:wrap;margin-top:24px;padding-top:20px;border-top:1px solid var(--b)}
 .pnote{font-size:var(--fs-sm);color:var(--m);margin-top:14px}
 
 /* Files & FAQ */
@@ -472,7 +474,8 @@ html[lang="en"] body{line-height:1.6}
  .grid .card,.feats .card{display:grid;grid-template-columns:44px 1fr;column-gap:14px;padding:18px}
  .grid .card .ic,.feats .card .ic{grid-row:span 2;width:44px;height:44px;margin:0;font-size:20px}
  .grid .card h3,.feats .card h3{margin-bottom:2px}
- .trial .btn,.quote .btn{flex:1 1 100%}
+ .trial .dl{flex:1 1 100%;align-items:stretch}
+ .quote .btn{flex:1 1 100%}
  .store{padding:24px 20px}
 }
 @media (max-width:420px){.steps{grid-template-columns:1fr}}
