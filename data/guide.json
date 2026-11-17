@@ -16,7 +16,7 @@
         "شاشة «اليوم»: شريط اليوم الدراسي والحصة الحالية ونسبة الحضور، وما يحتاج انتباهك الآن.",
         "الاستيراد من نظام الوزارة بدل إدخال الطلاب واحداً واحداً.",
         "الغياب، الحصص البديلة، المناوبة، وكل ورقة رسمية على ترويسة المدرسة.",
-        "يعمل بدون إنترنت، وبيانات المدرسة تبقى على جهازها مع نسخ احتياطي تلقائي."
+        "العمل اليومي لا يحتاج إنترنت، وبيانات المدرسة تبقى على جهازها مع نسخ احتياطي تلقائي."
       ],
       "title_en": "Iris in a minute: running the school with less effort",
       "intro_en": "A quick tour of the program before the lessons.",
@@ -24,7 +24,7 @@
         "The «اليوم» (Today) screen: the school-day bar, the current lesson, the attendance rate, and what needs your attention now.",
         "Import from the Ministry system instead of entering students one by one.",
         "Absences, substitute lessons, the duty rota, and every official paper on the school letterhead.",
-        "Works offline, and the school’s data stays on its computer with an automatic backup."
+        "Daily work needs no internet, and the school’s data stays on its computer with an automatic backup."
       ]
     },
     {
@@ -255,7 +255,7 @@
       "steps": [
         "عند أول تشغيل يعرض Iris «رمز الطلب»؛ انسخه وأرسله لنا على واتساب.",
         "يصلك رمز التفعيل في اليوم نفسه؛ الصقه واضغط زر «تفعيل».",
-        "التفعيل الأول مرة واحدة وبدون إنترنت، ثم رمز تجديد كل عام دراسي.",
+        "التفعيل الأول مرة واحدة، ثم رمز تجديد كل عام دراسي.",
         "بعد التفعيل تبدأ خطوات درس «البداية»: كلمة المرور، اسم المدرسة، الترويسة."
       ],
       "title_en": "Activation",
@@ -263,7 +263,7 @@
       "steps_en": [
         "On first launch Iris shows the «رمز الطلب» (request code); copy it and send it to us on WhatsApp.",
         "You receive the activation code the same day; paste it and press «تفعيل» (activate).",
-        "The first activation is done once, offline; then a renewal code each school year.",
+        "The first activation is done once; then a renewal code each school year.",
         "After activation, the «البداية» (getting started) lesson follows: password, school name, letterhead."
       ]
     }
