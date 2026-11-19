@@ -1,22 +1,35 @@
 <!doctype html>
-<!-- Source for src/assets/img/og.png (1200×630 link-preview card). Regenerate:
-     google-chrome --headless=new --hide-scrollbars --force-device-scale-factor=1 --window-size=1200,630 --screenshot=src/assets/img/og.png "file://$PWD/design/og-image.html"  (run from the repo root) -->
+<!-- Source for src/assets/img/og.png (1200×630 link-preview card, Arabic; og-image-en.html is the English one), in the site's
+     dark DataX Matrix look: the DataX grid with Iris's square lit, the Iris logo, IBM Plex Sans Arabic from the site's fonts.
+     Regenerate (from the repo root):
+     google-chrome --headless=new --hide-scrollbars --force-device-scale-factor=1 --window-size=1200,630 --screenshot=src/assets/img/og.png "file://$PWD/design/og-image.html" -->
 <html lang="ar" dir="rtl"><head><meta charset="utf-8">
 <style>
+@font-face{font-family:"Plex Ar";font-weight:400;src:url(../src/assets/fonts/IBMPlexSansArabic-Regular.woff2) format("woff2")}
+@font-face{font-family:"Plex Ar";font-weight:700;src:url(../src/assets/fonts/IBMPlexSansArabic-Bold.woff2) format("woff2")}
+@font-face{font-family:"Plex";font-weight:700;src:url(../src/assets/fonts/IBMPlexSans-Bold.woff2) format("woff2")}
 *{margin:0;padding:0;box-sizing:border-box}
 html,body{width:1200px;height:630px;overflow:hidden}
-body{font-family:"Segoe UI",Tahoma,"Noto Sans Arabic","Noto Naskh Arabic",sans-serif;background:#F7F6F2;color:#1F2A28;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;position:relative}
-body::before{content:"";position:absolute;inset:0 0 auto 0;height:14px;background:#0F766E}
-body::after{content:"";position:absolute;inset:auto 0 0 0;height:14px;background:#F2B33D}
-.logo{width:180px;height:180px;border-radius:50%;box-shadow:0 14px 34px rgba(15,118,110,.28);margin-bottom:18px}
-.name{font-size:72px;font-weight:800;line-height:1.1;color:#0F766E;direction:ltr}
-.t{font-size:48px;font-weight:800;line-height:1.4;margin-top:8px}
-.s{font-size:28px;color:#4F5654;margin-top:10px}
-.d{position:absolute;bottom:40px;font-size:24px;color:#0F766E;font-weight:700;direction:ltr}
+body{font-family:"Plex Ar","Segoe UI",Tahoma,sans-serif;background:#0A0F1A;color:#E7ECF4;position:relative}
+body::before{content:"";position:absolute;inset:0;background:radial-gradient(700px 420px at 22% 46%,rgba(126,170,255,.16),transparent 70%)}
+.grid{position:absolute;left:96px;top:115px;width:400px;height:400px}
+.grid rect{fill:none;stroke:#E7ECF4;stroke-opacity:.55;stroke-width:1.6}
+.grid .c{fill:#E7ECF4;fill-opacity:.9;stroke:none}
+.grid .i{fill:#7EAAFF;stroke:none}
+.logo{width:96px;height:96px;border-radius:50%;box-shadow:0 10px 32px rgba(126,170,255,.4)}
+.txt{position:absolute;right:84px;top:0;bottom:0;width:620px;display:flex;flex-direction:column;justify-content:center}
+.name{display:flex;align-items:center;gap:22px;font-family:"Plex",sans-serif;font-size:88px;font-weight:700;line-height:1;color:#7EAAFF;direction:ltr;justify-content:flex-end;margin-bottom:26px}
+.t{font-size:54px;font-weight:700;line-height:1.35;color:#fff}
+.s{font-size:26px;line-height:1.6;color:#A0ACBF;margin-top:20px}
+.foot{position:absolute;right:84px;bottom:46px;display:flex;align-items:center;gap:14px;font-family:"Plex",sans-serif;font-size:24px;font-weight:700;color:#E7ECF4;direction:ltr}
+.foot svg{width:30px;height:30px}
+.foot span{color:#A0ACBF;font-weight:700}
 </style></head><body>
-<img class="logo" src="iris-logo-986.png" alt="">
-<div class="name">Iris</div>
-<div class="t">إدارة المدرسة كلها في برنامج واحد</div>
-<div class="s">للمدارس الحكومية والخاصة · يعمل بدون إنترنت · استيراد مباشر من نظام الوزارة</div>
-<div class="d">dataxmatrix.com</div>
+<svg class="grid" viewBox="0 0 100 100" aria-hidden="true"><rect x="0.9" y="0.9" width="24.2" height="24.2"/><rect x="37.9" y="0.9" width="24.2" height="24.2"/><rect x="74.9" y="0.9" width="24.2" height="24.2"/><rect x="0.9" y="37.9" width="24.2" height="24.2"/><rect class="c" x="37" y="37" width="26" height="26"/><rect x="74.9" y="37.9" width="24.2" height="24.2"/><rect x="0.9" y="74.9" width="24.2" height="24.2"/><rect class="i" x="37" y="74" width="26" height="26"/><rect x="74.9" y="74.9" width="24.2" height="24.2"/></svg>
+<div class="txt">
+ <div class="name"><img class="logo" src="iris-logo-986.png" alt="">Iris</div>
+ <div class="t">إدارة المدرسة كلها<br>في برنامج واحد</div>
+ <div class="s">للمدارس الفلسطينية · تجربة مجانية شهراً</div>
+</div>
+<div class="foot"><span>dataxmatrix.com</span><b style="width:24px"></b>DataX Matrix<svg viewBox="0 0 100 100"><path fill="#E7ECF4" fill-opacity=".3" d="M0 0h26v26h-26zM37 0h26v26h-26zM74 0h26v26h-26zM0 37h26v26h-26zM74 37h26v26h-26zM0 74h26v26h-26zM37 74h26v26h-26zM74 74h26v26h-26z"/><path fill="#E7ECF4" d="M37 37h26v26h-26z"/></svg></div>
 </body></html>

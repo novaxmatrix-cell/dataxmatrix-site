@@ -31,19 +31,19 @@
       "id": "start",
       "youtube": "PGIBLtX04w4",
       "title": "البداية: كلمة المرور، المدرسة، الترويسة",
-      "intro": "أول تشغيل بعد التفعيل: ثلاث خطوات ثم تبدأ العمل.",
+      "intro": "بعد الموافقة على التجربة تبدأ بمدرستك أنت: ثلاث خطوات ثم تبدأ العمل.",
       "page": "/guide/getting-started/",
       "steps": [
-        "عند أول تشغيل يختار مدير المدرسة كلمة المرور بنفسه.",
+        "يختار مدير المدرسة كلمة المرور بنفسه.",
         "اطبع مفتاح الاسترداد واحفظه في مكان آمن، فلا يظهر مرة أخرى.",
         "اكتب اسم المدرسة، فتُبنى الترويسة وحدها.",
         "راجع الترويسة وعدّل ما تشاء، فهي التي تظهر على كل الأوراق الرسمية.",
         "ثم أنشئ العام الدراسي من «العام الدراسي والتقويم»، فتُضاف العطل الرسمية تلقائياً."
       ],
       "title_en": "Getting started: password, school, letterhead",
-      "intro_en": "First launch after activation: three steps and you are ready to work.",
+      "intro_en": "Once the trial is approved, you start with your own school: three steps and you are ready to work.",
       "steps_en": [
-        "On first launch, the principal chooses the password personally.",
+        "The principal chooses the password personally.",
         "Print the recovery key and keep it somewhere safe: it is shown only once.",
         "Type the school name, and the letterhead is built automatically.",
         "Review the letterhead and edit it as you like: it appears on every official paper.",
@@ -250,21 +250,25 @@
     },
     {
       "id": "activation",
-      "title": "التفعيل",
-      "intro": "عند أول تشغيل، يطلب Iris رمز التفعيل. خطوات مكتوبة، بلا فيديو.",
+      "title": "التجربة والتفعيل",
+      "intro": "من التثبيت إلى التجربة المجانية، ثم الاشتراك. خطوات مكتوبة، بلا فيديو.",
       "steps": [
-        "عند أول تشغيل يعرض Iris «رمز الطلب»؛ انسخه وأرسله لنا على واتساب.",
-        "يصلك رمز التفعيل في اليوم نفسه؛ الصقه واضغط زر «تفعيل».",
-        "التفعيل الأول مرة واحدة، ثم رمز تجديد كل عام دراسي.",
-        "بعد التفعيل تبدأ خطوات درس «البداية»: كلمة المرور، اسم المدرسة، الترويسة."
+        "ثبّت Iris من Microsoft Store على جهاز المدرسة.",
+        "افتح المدرسة التجريبية وتعرّف على البرنامج.",
+        "اطلب التجربة المجانية من داخل البرنامج، والجهاز متصل بالإنترنت.",
+        "تصلك الموافقة عبر الإنترنت، فتجرّب Iris بمدرستك شهراً مجاناً بكامل الميزات.",
+        "بعدها تبدأ خطوات درس «البداية»: كلمة المرور، اسم المدرسة، الترويسة.",
+        "عند الاشتراك أو التجديد: تواصل معنا على واتساب، ونفعّل لك الاشتراك."
       ],
-      "title_en": "Activation",
-      "intro_en": "On first launch, Iris asks for an activation code. Written steps, no video.",
+      "title_en": "Trial and activation",
+      "intro_en": "From installing to the free trial, then subscribing. Written steps, no video.",
       "steps_en": [
-        "On first launch Iris shows the «رمز الطلب» (request code); copy it and send it to us on WhatsApp.",
-        "You receive the activation code the same day; paste it and press «تفعيل» (activate).",
-        "The first activation is done once; then a renewal code each school year.",
-        "After activation, the «البداية» (getting started) lesson follows: password, school name, letterhead."
+        "Install Iris from the Microsoft Store on the school’s computer.",
+        "Open the demo school and get to know the program.",
+        "Request the free trial from inside Iris, with the computer online.",
+        "The approval arrives online, and you try Iris with your own school free for a month, with all features.",
+        "Then follow the «البداية» (getting started) lesson: password, school name, letterhead.",
+        "When you subscribe or renew: contact us on WhatsApp, and we activate your subscription."
       ]
     }
   ]

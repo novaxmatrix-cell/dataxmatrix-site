@@ -30,7 +30,7 @@ const STORE_URL = { en: 'https://apps.microsoft.com/detail/9P5FQXQH4HF3', ar: 'h
 // («Iris School Installer.exe») that installs Iris from the Store and opens it. It carries no parameters, like STORE_URL.
 // The installer runs on Windows only: on other devices site.js points the same buttons to the Store page (STORE_URL).
 const DOWNLOAD_URL = 'https://get.microsoft.com/installer/download/9P5FQXQH4HF3';
-// Iris Exam (worksheets and tests for teachers): a separate Store app, its own square and section on the home page.
+// Iris Exam (worksheets and tests for teachers): a separate Store app, one small «من نفس العائلة» card near the foot of the home page.
 const EXAM_STORE_URL = 'https://apps.microsoft.com/detail/9NDTGZDSTDF7';
 // THE SWITCH: false while Iris Exam awaits Store approval, so its Store button is a disabled «قريباً في Microsoft Store» label.
 // After approval, set it to true: {{EXAM_STORE_BTN}} becomes the real link to EXAM_STORE_URL.
@@ -40,7 +40,10 @@ const YOUTUBE_URL = 'https://www.youtube.com/@NovaX-Matrix';
 
 // Old Arabic URLs that moved. The app links to /guide/<slug>/, so those must keep working.
 const REDIRECTS = {
-  '/files/': '/ar/forms/',
+  '/files/': '/ar/faq/',
+  // The «Forms & FAQ» page became the FAQ page (the forms were never published).
+  '/forms/': '/faq/',
+  '/ar/forms/': '/ar/faq/',
   '/guide/getting-started/': '/ar/guide/getting-started/',
   '/guide/eschool-import/': '/ar/guide/eschool-import/',
   '/guide/attendance/': '/ar/guide/attendance/',
@@ -51,52 +54,46 @@ const STR = {
   en: {
     dir: 'ltr', ogLocale: 'en_US', ogImage: 'og-en.png', switchLabel: 'English',
     homeTitle: 'DataX Matrix · Iris, school management software', titleSuffix: ' – Iris',
-    nav: { home: 'Home', download: 'Download', activation: 'Activation & pricing', guide: 'User guide', forms: 'Forms & FAQ', contact: 'Contact' },
+    nav: { features: 'Features', activation: 'Activation & pricing', download: 'Download', guide: 'User guide', faq: 'FAQ', contact: 'Contact' },
     privacy: 'Privacy policy',
     skip: 'Skip to content', navAria: 'Main menu', footerNavAria: 'Footer links', downloadBtn: 'Download Iris',
     themeAria: 'Toggle dark mode', menuAria: 'Menu', ogAlt: 'Iris logo – run your whole school in one program',
-    footerAbout: 'School management software for Palestinian government and private schools. Daily work needs no internet, and the school’s data stays at the school.',
-    links: 'Links', contact: 'Contact us', whatsapp: 'WhatsApp', support: 'Technical support', tagline: 'For Palestinian government and private schools',
+    footerAbout: 'School management software for Palestinian schools. Daily work needs no internet, and the school’s data stays at the school.',
+    links: 'Links', contact: 'Contact us', whatsapp: 'WhatsApp', support: 'Technical support', tagline: 'For Palestinian schools',
     familyUrl: 'https://novaxmatrix.com/', family: 'DataX Matrix is part of NovaX Matrix',
     fonts: ['IBMPlexSans-Regular', 'IBMPlexSans-Bold'],
     storeAlt: 'Download from the Microsoft Store', storeLink: 'Iris on the Microsoft Store', youtubeLink: 'NovaX Matrix on YouTube',
-    examGet: 'Get it from Microsoft Store', examStoreLink: 'Iris Exam on Microsoft Store', examSoon: 'Coming soon to Microsoft Store', footerExam: 'Worksheets and tests for teachers, from the Palestinian curriculum question bank.',
+    examGet: 'Get it from Microsoft Store', examSoon: 'Coming soon to Microsoft Store',
     videoAria: 'Video: ', tocAria: 'Guide contents', watch: 'Play the video (on YouTube)', noVideo: 'Written steps, no video',
   },
   ar: {
     dir: 'rtl', ogLocale: 'ar_AR', ogImage: 'og.png', switchLabel: 'العربية',
     homeTitle: 'DataX Matrix · Iris – نظام إدارة المدرسة', titleSuffix: ' – Iris',
-    nav: { home: 'الرئيسية', download: 'التنزيل', activation: 'التفعيل والأسعار', guide: 'دليل الاستخدام', forms: 'النماذج والأسئلة', contact: 'تواصل معنا' },
+    nav: { features: 'الميزات', activation: 'التفعيل والأسعار', download: 'التنزيل', guide: 'دليل الاستخدام', faq: 'الأسئلة الشائعة', contact: 'تواصل معنا' },
     privacy: 'سياسة الخصوصية',
     skip: 'تخطَّ إلى المحتوى', navAria: 'القائمة الرئيسية', footerNavAria: 'روابط التذييل', downloadBtn: 'تنزيل Iris',
     themeAria: 'تبديل الوضع الليلي', menuAria: 'القائمة', ogAlt: 'شعار Iris – إدارة المدرسة كلها في برنامج واحد',
-    footerAbout: 'نظام إدارة مدرسية للمدارس الفلسطينية الحكومية والخاصة. العمل اليومي لا يحتاج إنترنت، وبيانات المدرسة تبقى في المدرسة.',
-    links: 'روابط', contact: 'تواصل معنا', whatsapp: 'واتساب', support: 'الدعم الفني', tagline: 'للمدارس الفلسطينية الحكومية والخاصة',
+    footerAbout: 'نظام إدارة مدرسية للمدارس الفلسطينية. العمل اليومي لا يحتاج إنترنت، وبيانات المدرسة تبقى في المدرسة.',
+    links: 'روابط', contact: 'تواصل معنا', whatsapp: 'واتساب', support: 'الدعم الفني', tagline: 'للمدارس الفلسطينية',
     familyUrl: 'https://novaxmatrix.com/ar/', family: '<bdi dir="ltr">DataX Matrix</bdi> جزء من <bdi dir="ltr">NovaX Matrix</bdi>',
     fonts: ['IBMPlexSansArabic-Regular', 'IBMPlexSansArabic-Bold'],
     storeAlt: 'التنزيل من Microsoft Store', storeLink: 'Iris على Microsoft Store',
-    examGet: 'نزّله من Microsoft Store', examStoreLink: 'Iris Exam على Microsoft Store', examSoon: 'قريباً في Microsoft Store', footerExam: 'أوراق عمل واختبارات للمعلمين من بنك أسئلة المنهاج الفلسطيني.', youtubeLink: 'قناة <bdi dir="ltr">NovaX Matrix</bdi> على YouTube',
+    examGet: 'نزّله من Microsoft Store', examSoon: 'قريباً في Microsoft Store', youtubeLink: 'قناة <bdi dir="ltr">NovaX Matrix</bdi> على YouTube',
     videoAria: 'فيديو: ', tocAria: 'محتويات الدليل', watch: 'شغّل الفيديو (على YouTube)', noVideo: 'خطوات مكتوبة، بلا فيديو',
   },
 };
-const NAV = [['home', '/'], ['download', '/download/'], ['activation', '/activation/'], ['guide', '/guide/'], ['forms', '/forms/'], ['contact', '/contact/']];
+const NAV = [['features', '/#features'], ['activation', '/activation/'], ['download', '/download/'], ['guide', '/guide/'], ['faq', '/faq/'], ['contact', '/contact/']];
 
 // Prefilled WhatsApp messages.
 const WA_TEXT = {
   en: {
     WA_URL: 'Hello, I’m contacting you about Iris for our school.',
-    WA_DEMO_URL: 'Hello, we’d like a demo of Iris for our school.\nSchool name: \nCity: ',
-    WA_SUBSCRIBE_URL: 'Hello, we would like to subscribe to Iris School. School name: ',
-    WA_ACTIVATE_URL: 'Hello, I’d like to activate Iris.\nSchool name: \nRequest code: ',
-    WA_EXAM_TRIAL_URL: 'Hello, I’d like a trial code for Iris Exam.\nName: \nRequest code: ',
+    WA_SUBSCRIBE_URL: 'Hello, we would like to subscribe to Iris School, or renew. School name: ',
     WA_REPORT_URL: 'Hello, I’d like to report a problem with Iris.\nSchool name: \nIris version: \nWhat happened: \n(I’ll attach a screenshot)',
   },
   ar: {
     WA_URL: 'مرحباً، أتواصل بخصوص برنامج Iris لمدرستنا.',
-    WA_DEMO_URL: 'مرحباً، نرغب بعرض لبرنامج Iris في مدرستنا.\nاسم المدرسة: \nالمدينة: ',
-    WA_SUBSCRIBE_URL: 'مرحباً، نرغب بالاشتراك في Iris School. اسم المدرسة: ',
-    WA_ACTIVATE_URL: 'مرحباً، أرغب بتفعيل برنامج Iris.\nاسم المدرسة: \nرمز الطلب: ',
-    WA_EXAM_TRIAL_URL: 'مرحباً، أرغب برمز تجربة لبرنامج Iris Exam.\nالاسم: \nرمز الطلب: ',
+    WA_SUBSCRIBE_URL: 'مرحباً، نرغب بالاشتراك في Iris School أو تجديده. اسم المدرسة: ',
     WA_REPORT_URL: 'مرحباً، أود الإبلاغ عن مشكلة في برنامج Iris.\nاسم المدرسة: \nإصدار البرنامج: \nوصف المشكلة: \n(سأرفق صورة للشاشة)',
   },
 };
@@ -135,13 +132,10 @@ const lastInstaller = rel.releases[0] || fail('releases.json: keep the last inst
 const reqList = (lang) => pick(rel, 'requirements', lang)
   .map((x) => `<li>${lang === 'ar' ? esc(x).replace(/\d+(?:-bit| GB)\b/g, (m) => `<bdi dir="ltr">${m}</bdi>`) : esc(x)}</li>`).join('');
 
-// Iris Exam's Store button (see EXAM_IN_STORE): class 'bw lg' in its section, 'bp' in its hero card.
+// Iris Exam's Store button (see EXAM_IN_STORE), in its small card on the home page (teal, as the card sits in .exam).
 const examStoreBtn = (lang, cls) => (EXAM_IN_STORE
   ? `<a class="btn ${cls}" href="${esc(EXAM_STORE_URL)}" rel="noopener"><svg class="i" aria-hidden="true"><use href="#i-download"/></svg>${STR[lang].examGet}</a>`
   : `<span class="btn ${cls} soon" aria-disabled="true"><svg class="i" aria-hidden="true"><use href="#i-clock"/></svg>${STR[lang].examSoon}</span>`);
-// Microsoft's official badge, unchanged (self-hosted): dark on the light theme, light on the dark theme.
-const storeBadge = (lang) => `<a class="msb" href="${esc(DOWNLOAD_URL)}" rel="noopener">${['dark', 'light'].map((v) =>
-  `<img class="msb-${v}" src="/assets/img/store/ms-store-${lang}-${v}.svg" width="161" height="44" alt="${v === 'dark' ? STR[lang].storeAlt : ''}">`).join('')}</a>`;
 
 // ---------- guide (data/guide.json → /guide/, /ar/guide/ and the Arabic chapter pages) ----------
 // Each chapter has a YouTube ID (`youtube`) or none (written steps only). `full` is the all-in-one video shown at the top of
@@ -182,14 +176,11 @@ const guideChapters = (lang) => guide.map((c, i) => `<div class="chap" id="${esc
 // ---------- tokens available in pages ----------
 function tokensFor(lang) {
   const t = {
-    WA_DISPLAY: () => (lang === 'en' ? '<span class="ltr">+972 56 880 6666</span>' : '<span class="ltr">056-880-6666</span>'),
+    WA_DISPLAY: () => '<span class="ltr">+972 56 880 6666</span>',
     STORE_URL: () => esc(STORE_URL[lang]),
     DOWNLOAD_URL: () => esc(DOWNLOAD_URL),
-    STORE_BADGE: () => storeBadge(lang),
     // Iris Exam's Store button: the real link, or a disabled label until EXAM_IN_STORE is true.
-    // EXAM_STORE_BTN sits in its teal home section (white button); EXAM_STORE_BTN_CARD in its hero card (teal button, like Iris's).
-    EXAM_STORE_BTN: () => examStoreBtn(lang, 'bw lg'),
-    EXAM_STORE_BTN_CARD: () => examStoreBtn(lang, 'bp'),
+    EXAM_STORE_BTN: () => examStoreBtn(lang, 'bo'),
     YOUTUBE_URL: () => esc(YOUTUBE_URL),
     REQUIREMENTS: () => reqList(lang),
     GUIDE_TOC: () => guideToc(lang),
@@ -291,11 +282,10 @@ for (const p of pages) {
     alternates,
     langRedirect,
     skip: t.skip, navAria: t.navAria, footerNavAria: t.footerNavAria, downloadBtn: t.downloadBtn, storeUrl: esc(STORE_URL[p.lang]), downloadUrl: esc(DOWNLOAD_URL),
-    examStoreItem: EXAM_IN_STORE ? `\n    <li><a href="${esc(EXAM_STORE_URL)}" rel="noopener">${t.examStoreLink}</a></li>` : '',
     storeLink: t.storeLink, youtubeUrl: esc(YOUTUBE_URL), youtubeLink: t.youtubeLink,
     themeAria: t.themeAria, menuAria: t.menuAria,
-    footerAbout: t.footerAbout, footerExam: t.footerExam, links: t.links, contactHead: t.contact, whatsapp: t.whatsapp, support: t.support, tagline: t.tagline, familyUrl: t.familyUrl, family: t.family,
-    navDownload: t.nav.download, navGuide: t.nav.guide, navForms: t.nav.forms, navActivation: t.nav.activation, navPrivacy: t.privacy,
+    footerAbout: t.footerAbout, links: t.links, contactHead: t.contact, whatsapp: t.whatsapp, support: t.support, tagline: t.tagline, familyUrl: t.familyUrl, family: t.family,
+    navDownload: t.nav.download, navGuide: t.nav.guide, navFaq: t.nav.faq, navActivation: t.nav.activation, navPrivacy: t.privacy,
     nav,
     year: String(new Date().getFullYear()),
     assetVersion,
